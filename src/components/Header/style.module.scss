@@ -13,6 +13,8 @@
     height: 280px;
     position: relative;
 
+    margin-bottom: 40px;
+
     @include breakpoint(md) {
       width: 320px;
       height: 320px;
@@ -43,5 +45,28 @@
     }
 
     transition: ease 0.6s all;
+  }
+
+  &__title {
+    text-align: center;
+    font-size: 48px;
+    font-weight: 600;
+
+    @include breakpoint(md) {
+      font-size: 64px;
+    }
+  }
+
+  &__button {
+    margin-top: 40px;
+
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    padding: 10px 18px;
+    border-radius: 8px;
+
+    font-size: 16px;
   }
 }

@@ -22,7 +22,7 @@ body,
 html {
   overflow: hidden;
   width: 100vw;
-  height: 100vh;
+  height: 100%;
 }
 
 body {
@@ -83,13 +83,13 @@ html {
   }
 
   .text__active {
-    color: $color-gray-500;
+    color: $color-gray-600;
     position: relative;
     z-index: 10;
   }
 
   .background {
-    background-color: $color-gray-500;
+    background-color: $color-gray-600;
   }
 
   .reversebg {
@@ -98,13 +98,26 @@ html {
 
   .border {
     border: 2px solid $color-gray-100;
+    border-bottom: 2px solid $color-gray-600;
+  }
+
+  .border__bottom {
     border-bottom: 2px solid $color-gray-500;
+  }
+
+  .buttonbg {
+    background-color: $color-gray-200;
+    color: $color-gray-600;
+
+    &:hover {
+      background-color: $color-gray-300;
+    }
   }
 }
 
 .light {
   .text {
-    color: $color-gray-500;
+    color: $color-gray-600;
   }
 
   .text__active {
@@ -118,11 +131,24 @@ html {
   }
 
   .reversebg {
-    background-color: $color-gray-500;
+    background-color: $color-gray-600;
   }
 
   .border {
-    border: 2px solid $color-gray-500;
+    border: 2px solid $color-gray-600;
     border-bottom: 2px solid $color-gray-100;
+  }
+
+  .border__bottom {
+    border-bottom: 2px solid $color-gray-200;
+  }
+
+  .buttonbg {
+    background-color: $color-gray-600;
+    color: $color-gray-100;
+
+    &:hover {
+      background-color: $color-gray-500;
+    }
   }
 }
