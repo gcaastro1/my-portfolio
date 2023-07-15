@@ -1,0 +1,111 @@
+@use "abstracts" as *;
+@import "../theme";
+
+:root {
+  font-size: 60%;
+}
+
+@media (min-width: 700px) {
+  :root {
+    font-size: 62.5%;
+  }
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  outline: 0;
+  box-sizing: border-box;
+}
+
+body,
+html {
+  overflow: hidden;
+  width: 100vw;
+  height: 100vh;
+}
+
+body {
+  background: $color-gray-100;
+
+  @include dark {
+    background: $color-gray-500;
+  }
+
+  background-attachment: fixed;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+strong {
+  font-weight: 500;
+}
+
+button {
+  cursor: pointer;
+  outline: none;
+  border: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+ul,
+ol,
+li {
+  list-style: none;
+}
+
+html {
+  -ms-touch-action: manipulation;
+  touch-action: manipulation;
+}
+
+.dark {
+  .text {
+    color: $color-gray-100;
+  }
+
+  .text__active {
+    color: $color-gray-500;
+    position: relative;
+    z-index: 10;
+  }
+
+  .background {
+    background-color: $color-gray-500;
+  }
+
+  .reversebg {
+    background-color: $color-gray-200;
+  }
+}
+
+.light {
+  .text {
+    color: $color-gray-500;
+  }
+
+  .text__active {
+    color: $color-gray-100;
+    position: relative;
+    z-index: 10;
+  }
+
+  .background {
+    background-color: $color-gray-100;
+  }
+
+  .reversebg {
+    background-color: $color-gray-500;
+  }
+}

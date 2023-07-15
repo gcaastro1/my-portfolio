@@ -1,0 +1,185 @@
+@use "abstracts" as *;
+@import "../../scss/theme";
+
+.navbar {
+  width: 100%;
+  position: fixed;
+  background-color: $color-gray-100;
+  border-bottom: 2px solid $color-gray-200;
+
+  &__content {
+    width: 1200px;
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 2rem 1.5rem;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+
+    @include breakpoint(md) {
+      padding: 2rem 3rem;
+    }
+
+    transition: 0.3s ease all;
+  }
+}
+
+// Avatar
+
+.logo {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  min-width: 210px;
+
+  p {
+    font-size: 16px;
+    font-weight: 600;
+  }
+
+  &__avatar {
+    width: 46px;
+    height: 46px;
+    border-radius: 100%;
+
+    img {
+      width: 46px;
+      height: 46px;
+
+      object-fit: cover;
+      border-radius: 100%;
+    }
+  }
+}
+
+// Navbar Buttons
+
+.buttons {
+  top: 0;
+  right: 100%;
+  bottom: 0;
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  backdrop-filter: blur(2px);
+
+  transform: translate(0);
+  transition: 0.3s ease transform;
+
+  @include breakpoint(md) {
+    transform: none;
+    flex-direction: row;
+
+    justify-content: space-between;
+    background: transparent;
+    width: 700px;
+    max-width: 100%;
+    height: 100%;
+    position: static;
+  }
+
+  &__link {
+    display: flex;
+    flex-direction: column;
+
+    @include breakpoint(md) {
+      transform: none;
+      flex-direction: row;
+      background: transparent;
+      width: auto;
+      height: 100%;
+      position: static;
+    }
+
+    gap: 20px;
+
+    &__default {
+      position: relative;
+      background-color: transparent;
+
+      border-radius: 8px;
+      font-size: 14px;
+
+      padding: 10px 20px;
+
+      &:hover {
+        text-decoration: underline;
+      }
+
+      &__active {
+        position: absolute;
+        inset: 0;
+        background-color: $color-gray-500;
+        border-radius: 8px;
+
+        padding: 10px 20px;
+        z-index: 1;
+      }
+    }
+  }
+
+  &.isMenu {
+    transform: translate(100%);
+  }
+}
+
+// Toggle Nav
+
+.toggle {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  font-size: 2rem;
+  transition: 0.3s ease all;
+  position: relative;
+
+  &:hover {
+    color: $color-gray-400;
+  }
+
+  @include breakpoint(md) {
+    display: none;
+  }
+}
+
+// Handle Theme
+
+.switch {
+  width: 45px;
+  height: 25px;
+  background-color: $color-gray-500;
+  display: flex;
+  justify-content: flex-start;
+  border-radius: 50px;
+  padding: 2px;
+  cursor: pointer;
+
+  &[data-theme="dark"] {
+    justify-content: flex-end;
+    background-color: $color-brand-100;
+
+    & div > svg {
+      color: $color-brand-100;
+    }
+  }
+
+  &__handle {
+    width: 20px;
+    height: 20px;
+    background-color: white;
+    border-radius: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
