@@ -1,13 +1,13 @@
 import Image from 'next/image'
-import mypic from "../../assets/avatar.png"
+import avatar from "../../assets/avatar.png"
 
 import style from "./style.module.scss"
 
-const Avatar = () => {
+const Logo = () => {
     return (
         <div className={`${style.logo} background`}>
             <div className={`${style.logo__avatar} reversebg`}>
-                <Image alt="Picture of the author" src={mypic}/>
+                <Image alt="Picture of the author" src={avatar}/>
             </div>
             <p className='text'>
                 &lt; Gustavo Lima &#47;&gt;
@@ -17,4 +17,4 @@ const Avatar = () => {
     )
 }
 
-export default Avatar
+export default Logo
