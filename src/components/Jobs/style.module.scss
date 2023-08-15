@@ -1,0 +1,86 @@
+@use "abstracts" as *;
+
+.jobs {
+  &__last {
+    &__title {
+      font-size: 48px;
+      font-weight: 700;
+      text-align: right;
+
+      @include breakpoint(md) {
+        font-size: 64px;
+      }
+    }
+  }
+}
+
+.carousel {
+  width: 100%;
+  max-width: 800px;
+  max-height: 600px;
+  height: 100%;
+  transform-style: preserve-3d;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+
+  margin: 0 auto;
+
+  &__radio {
+    display: none;
+  }
+
+  &__list {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    margin-bottom: 20px;
+  }
+
+  &__card {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    right: 0;
+    margin: auto;
+    transition: transform 0.4s ease;
+    cursor: pointer;
+
+    img {
+      width: 100%;
+      height: 100%;
+      border-radius: 10px;
+      object-fit: cover;
+    }
+  }
+
+  #job-1:checked ~ &__list #card-3,
+  #job-2:checked ~ &__list #card-1,
+  #job-3:checked ~ &__list #card-2 {
+    transform: translatex(-40%) scale(0.8);
+    opacity: 0.4;
+    z-index: 0;
+  }
+
+  #job-1:checked ~ &__list #card-2,
+  #job-2:checked ~ &__list #card-3,
+  #job-3:checked ~ &__list #card-1 {
+    transform: translatex(40%) scale(0.8);
+    opacity: 0.4;
+    z-index: 0;
+  }
+
+  #job-1:checked ~ &__list #card-1,
+  #job-2:checked ~ &__list #card-2,
+  #job-3:checked ~ &__list #card-3 {
+    transform: translatex(0) scale(1);
+    opacity: 1;
+    z-index: 1;
+
+    img {
+      box-shadow: 0px 0px 5px 0px rgba(81, 81, 81, 0.47);
+    }
+  }
+}

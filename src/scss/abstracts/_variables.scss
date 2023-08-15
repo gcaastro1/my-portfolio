@@ -18,3 +18,9 @@ $text-font-stack: "Inter", "Arial", sans-serif;
     }
   }
 }
+
+@mixin keyframes($name) {
+  @keyframes #{$name} {
+    @content;
+  }
+}
