@@ -11,7 +11,7 @@ const Jobs = () => {
     return (
         <section className={`container ${theme} ${styles.jobs}`}>
             <div className={styles.jobs__last}>
-                <h1 className={`${styles.jobs__last__title} text`}>My last job.</h1>
+                <h1 className={`${styles.jobs__last__title} text`}>My last jobs.</h1>
             </div>
 
             <Carousel />

@@ -87,6 +87,18 @@ html {
     z-index: 10;
   }
 
+  .swiper-pagination {
+    background-color: $color-gray-600;
+    &-bullet {
+      background-color: $color-gray-100;
+    }
+  }
+
+  .stack {
+    background-color: $color-gray-200;
+    color: $color-gray-600;
+  }
+
   .background {
     background-color: $color-gray-600;
   }
@@ -123,6 +135,18 @@ html {
     color: $color-gray-100;
     position: relative;
     z-index: 10;
+  }
+
+  .swiper-pagination {
+    background-color: $color-gray-100;
+    &-bullet {
+      background-color: $color-gray-600;
+    }
+  }
+
+  .stack {
+    background-color: $color-gray-600;
+    color: $color-gray-100;
   }
 
   .background {

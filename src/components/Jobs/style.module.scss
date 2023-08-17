@@ -6,6 +6,7 @@
       font-size: 48px;
       font-weight: 700;
       text-align: right;
+      margin-bottom: 40px;
 
       @include breakpoint(md) {
         font-size: 64px;
@@ -14,73 +15,92 @@
   }
 }
 
-.carousel {
-  width: 100%;
-  max-width: 800px;
-  max-height: 600px;
+.card {
   height: 100%;
-  transform-style: preserve-3d;
+  position: relative;
+  width: 100%;
+
   display: flex;
-  justify-content: center;
   flex-direction: column;
-  align-items: center;
+  justify-content: space-between;
 
-  margin: 0 auto;
-
-  &__radio {
-    display: none;
+  @include breakpoint(md) {
+    flex-direction: row;
+    height: 600px;
   }
 
-  &__list {
-    position: relative;
+  &__cover {
     width: 100%;
-    height: 100%;
-    margin-bottom: 20px;
-  }
+    height: 400px;
 
-  &__card {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    left: 0;
-    right: 0;
-    margin: auto;
-    transition: transform 0.4s ease;
-    cursor: pointer;
-
-    img {
-      width: 100%;
+    @include breakpoint(md) {
+      width: 60%;
       height: 100%;
-      border-radius: 10px;
-      object-fit: cover;
     }
   }
 
-  #job-1:checked ~ &__list #card-3,
-  #job-2:checked ~ &__list #card-1,
-  #job-3:checked ~ &__list #card-2 {
-    transform: translatex(-40%) scale(0.8);
-    opacity: 0.4;
-    z-index: 0;
-  }
+  &__info {
+    max-width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 40px 40px;
+    gap: 20px;
 
-  #job-1:checked ~ &__list #card-2,
-  #job-2:checked ~ &__list #card-3,
-  #job-3:checked ~ &__list #card-1 {
-    transform: translatex(40%) scale(0.8);
-    opacity: 0.4;
-    z-index: 0;
-  }
-
-  #job-1:checked ~ &__list #card-1,
-  #job-2:checked ~ &__list #card-2,
-  #job-3:checked ~ &__list #card-3 {
-    transform: translatex(0) scale(1);
-    opacity: 1;
-    z-index: 1;
-
-    img {
-      box-shadow: 0px 0px 5px 0px rgba(81, 81, 81, 0.47);
+    @include breakpoint(md) {
+      width: 40%;
     }
+
+    &__stacks {
+      display: flex;
+      flex-direction: row;
+      gap: 10px;
+      flex-wrap: wrap;
+
+      span {
+        padding: 6px 10px;
+        border-radius: 4px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 3px;
+      }
+    }
+
+    &__title {
+      font-weight: 700;
+      font-size: 32px;
+
+      @include breakpoint(md) {
+        font-size: 48px;
+      }
+    }
+
+    &__description {
+      font-size: 13px;
+      line-height: 22px;
+    }
+
+    &__link {
+      padding: 10px 20px;
+      letter-spacing: 3px;
+      font-size: 11px;
+      text-transform: uppercase;
+      width: fit-content;
+      border-radius: 8px;
+      font-weight: 600;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  img {
+    inset: 0;
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    border-radius: 0px 20px 20px 0;
   }
 }

@@ -1,20 +1,45 @@
-import Card from "./Card"
+import { Swiper, SwiperSlide } from "swiper/react"
+import { Navigation, Autoplay, Pagination } from "swiper/modules"
+
 import styles from "./style.module.scss"
 import jobs from "@/utils/jobsData"
+import Card from "./Card"
 
+import "swiper/scss"
+import "swiper/scss/navigation"
+import "swiper/scss/pagination"
+import "swiper/scss/autoplay"
 
 const Carousel = () => {  
     return (
         <div className={styles.carousel}>
-            {
-                jobs.map((job) => (<input key={`job-${job.id}`} className={styles.carousel__radio} type="radio" name="slider" id={`job-${job.id}`} defaultChecked={job.id === 1} />))
-            }
-            <div className={styles.carousel__list}>
+            <Swiper
+                loop  
+                allowTouchMove={false}
+                slidesPerView={1} 
+                centeredSlides
+                direction={"vertical"}
+                pagination={{
+                    clickable: true,
+                }}
+                autoplay={{
+                    delay: 3000,
+                    pauseOnMouseEnter: true,
+                }}
+                className={styles.carousel} 
+                modules={[Navigation, Autoplay, Pagination]}
+                > 
                 {
-                    jobs.map((job) => <Card key={`card-${job.id}`} job={job}/>)         
+                    jobs.map((job) => (
+                        <SwiperSlide key={`card-${job.id}`}> 
+                            <Card job={job}/>
+                        </SwiperSlide>
+                        )
+                    )         
                 }
-            </div>
+            </Swiper>
         </div>
+        
     )
 }
 
