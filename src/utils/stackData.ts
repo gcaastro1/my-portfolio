@@ -1,7 +1,7 @@
-import { 
-  Html5Plain, 
-  Css3Plain, 
-  JavascriptPlain, 
+import {
+  Html5Plain,
+  Css3Plain,
+  JavascriptPlain,
   TypescriptPlain,
   NodejsPlain,
   ReactOriginal,
@@ -10,58 +10,58 @@ import {
   PostgresqlPlain,
   GitPlain,
   PythonPlain,
-  NestjsPlain
-} from "devicons-react"
+  NestjsPlain,
+} from 'devicons-react'
 
 const stackData = [
   {
-    title: "HTML",
+    title: 'HTML',
     img: Html5Plain,
   },
   {
-    title: "CSS",
+    title: 'CSS',
     img: Css3Plain,
   },
   {
-    title: "JS",
+    title: 'JS',
     img: JavascriptPlain,
   },
-  { 
-    title: "Type Script", 
-    img: TypescriptPlain, 
-},
   {
-    title: "Node JS",
+    title: 'Type Script',
+    img: TypescriptPlain,
+  },
+  {
+    title: 'Node JS',
     img: NodejsPlain,
   },
   {
-    title: "React",
+    title: 'React',
     img: ReactOriginal,
   },
-  { 
-    title: "Next.js",
+  {
+    title: 'Next.js',
     img: NextjsOriginal,
   },
-  { 
-    title: "Nest.js",
-    img: NestjsPlain, 
+  {
+    title: 'Nest.js',
+    img: NestjsPlain,
   },
-  { 
-    title: "Docker", 
-    img: DockerPlain, 
+  {
+    title: 'Docker',
+    img: DockerPlain,
   },
-  { 
-    title: "Postgre SQL", 
-    img: PostgresqlPlain, 
+  {
+    title: 'Postgre SQL',
+    img: PostgresqlPlain,
   },
-  { 
-    title: "Git", 
-    img: GitPlain, 
+  {
+    title: 'Git',
+    img: GitPlain,
   },
-  { 
-    title: "Python", 
-    img: PythonPlain, 
+  {
+    title: 'Python',
+    img: PythonPlain,
   },
-];
+]
 
 export default stackData

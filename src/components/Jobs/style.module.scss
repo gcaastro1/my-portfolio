@@ -1,4 +1,4 @@
-@use "abstracts" as *;
+@use 'abstracts' as *;
 
 .jobs {
   &__last {
@@ -36,6 +36,17 @@
     @include breakpoint(md) {
       width: 60%;
       height: 100%;
+    }
+
+    img {
+      inset: 0;
+      object-fit: cover;
+      width: 100%;
+      height: 100%;
+      border-radius: 0px 0px 20px 20px;
+      @include breakpoint(md) {
+        border-radius: 0px 20px 20px 0;
+      }
     }
   }
 
@@ -94,13 +105,5 @@
         text-decoration: underline;
       }
     }
-  }
-
-  img {
-    inset: 0;
-    object-fit: cover;
-    width: 100%;
-    height: 100%;
-    border-radius: 0px 20px 20px 0;
   }
 }

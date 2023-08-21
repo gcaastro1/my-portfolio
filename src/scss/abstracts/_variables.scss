@@ -8,7 +8,7 @@ $color-gray-700: #181818;
 
 $color-brand-100: #c03b3b;
 
-$text-font-stack: "Inter", "Arial", sans-serif;
+$text-font-stack: 'Inter', 'Arial', sans-serif;
 
 @mixin breakpoint($point) {
   @if $point == md {

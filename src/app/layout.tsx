@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import "../scss/main.scss"
+import '../scss/main.scss'
 import { Inter } from 'next/font/google'
 import { ThemeProvider } from '@/contexts/ThemeContext'
 
@@ -17,11 +17,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="pt-br">
-        <body className={inter.className}>        
-          <ThemeProvider>
-            {children}
-          </ThemeProvider>
-        </body>
+      <body className={inter.className}>
+        <ThemeProvider>{children}</ThemeProvider>
+      </body>
     </html>
   )
 }

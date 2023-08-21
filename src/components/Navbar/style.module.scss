@@ -1,5 +1,5 @@
-@use "abstracts" as *;
-@import "../../scss/theme";
+@use 'abstracts' as *;
+@import '../../scss/theme';
 
 .navbar {
   width: 100%;
@@ -164,7 +164,7 @@
   padding: 2px;
   cursor: pointer;
 
-  &[data-theme="dark"] {
+  &[data-theme='dark'] {
     justify-content: flex-end;
     background-color: $color-brand-100;
 

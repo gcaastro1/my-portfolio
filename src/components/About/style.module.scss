@@ -1,4 +1,4 @@
-@use "abstracts" as *;
+@use 'abstracts' as *;
 
 .about {
   background-color: $color-gray-600;
@@ -78,7 +78,7 @@
     color: $color-gray-600;
 
     &::before {
-      content: "";
+      content: '';
       z-index: -1;
       bottom: -5px;
       position: absolute;
