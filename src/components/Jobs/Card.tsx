@@ -1,58 +1,25 @@
-import { JobData } from '@/utils/jobsData'
 import styles from './style.module.scss'
-import Image from 'next/image'
+import { ReposType } from '.'
+import Link from 'next/link'
 
 interface Props {
-  job: JobData
+  job: ReposType
 }
 
 const Card = ({ job }: Props) => {
   return (
-    <div className={`${styles.card} background`}>
-      <div className={styles.card__info}>
-        <div className={styles.card__info__stacks}>
-          {job.stacks.map((stack) => (
-            <span key={stack} className={`stack`}>
-              {stack}
-            </span>
-          ))}
-        </div>
-        <h2 className={`${styles.card__info__title} text`}>{job.title}</h2>
-        <p className={`${styles.card__info__description} text`}>
-          {job.description}
-        </p>
-        {job.repo2 ? (
-          <a
-            href={job.repo}
-            className={`${styles.card__info__link} stack`}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Repositorio Back
-          </a>
-        ) : null}
-        <a
-          href={job.repo}
-          className={`${styles.card__info__link} stack`}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Repositorio
-        </a>
-        <a
-          href={job.deploy}
-          className={`${styles.card__info__link} stack`}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Deploy
-        </a>
+    <li className={styles.card}>
+      <div className={styles.card__header}>
+        <h3>{job.name}</h3>
+        {job.language && <span>{job.language}</span>}
       </div>
 
-      <div className={styles.card__cover}>
-        <Image src={job.img} alt="Job Cover Image" />
+      <p>{job.description}</p>
+      <div className={styles.card__links}>
+        <Link href={job.html_url}>Repo</Link>
+        {job.homepage && <Link href={job.homepage}>Deploy</Link>}
       </div>
-    </div>
+    </li>
   )
 }
 

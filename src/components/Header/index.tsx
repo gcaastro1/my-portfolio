@@ -19,8 +19,12 @@ const spinTransition = {
 const Header = () => {
   const { theme } = useContext(ThemeContext)
 
+  const scroll = () => {
+    document.getElementById('works')?.scrollIntoView({ behavior: 'smooth' })
+  }
+
   return (
-    <div className={`${styles.header} container ${theme}`}>
+    <div className={`${styles.header} container ${theme}`} id="header">
       <div className={styles.header__avatar}>
         <motion.span
           className={`${styles.header__avatar__circle} border`}
@@ -31,7 +35,7 @@ const Header = () => {
       </div>
       <h1 className={`${styles.header__title} text`}>Hello, I&apos;m a</h1>
       <Typing />
-      <button className={`${styles.header__button} buttonbg`}>
+      <button className={`${styles.header__button} buttonbg`} type="button" onClick={() => scroll()}>
         Discover my works <ArrowDown size={16} />
       </button>
     </div>

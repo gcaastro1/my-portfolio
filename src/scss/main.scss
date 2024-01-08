@@ -1,4 +1,9 @@
-@import './base/reset';
-@import './base/swiper';
+@import "./base/reset";
+@import "./base/swiper";
+
+html,
+body {
+    scroll-behavior: smooth;
+}
 
 // foward use

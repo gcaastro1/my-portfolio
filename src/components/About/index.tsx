@@ -6,7 +6,7 @@ const About = () => {
   const stacks = stackData
 
   return (
-    <section className={styles.about}>
+    <section className={styles.about} id='about'>
       <div className={`${styles.about__container} container`}>
         <div className={styles.about__content}>
           <h1 className={styles.about__content__title}>About.</h1>

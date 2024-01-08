@@ -2,6 +2,7 @@
 
 .about {
   background-color: $color-gray-600;
+  scroll-margin-block-start: 110px;
 
   &__container {
     display: flex;

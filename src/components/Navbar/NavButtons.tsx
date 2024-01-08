@@ -1,11 +1,12 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { motion } from 'framer-motion'
 
 import styles from './style.module.scss'
 import ThemeSwitch from './ThemeSwitcher'
 import NavbarToggle from './NavbarToggle'
+import Link from 'next/link'
 
 interface PageSizeProps {
   width: number | undefined
@@ -16,18 +17,22 @@ const navItems = [
   {
     id: 1,
     title: 'Home',
+    redirect: 'header',
   },
   {
     id: 2,
     title: 'About',
+    redirect: 'about',
   },
   {
     id: 3,
     title: 'Work',
+    redirect: 'works',
   },
   {
     id: 4,
     title: 'Contact',
+    redirect: 'contacts',
   },
 ]
 
@@ -38,6 +43,10 @@ const NavButtons = () => {
     width: undefined,
     height: undefined,
   })
+
+  const scroll = (id: string) => {
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
+  }
 
   useEffect(() => {
     setSize({
@@ -77,9 +86,13 @@ const NavButtons = () => {
         <motion.div className={`${styles.buttons__link} background`}>
           {navItems.map((item) => (
             <button
+              type="button"
               className={styles.buttons__link__default}
               key={`button-${item.id}`}
-              onClick={() => setActive(item.id)}
+              onClick={() => {
+                setActive(item.id)
+                scroll(item.redirect)
+              }}
             >
               <span className={active == item.id ? 'text__active' : 'text'}>
                 {item.title}

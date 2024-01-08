@@ -11,9 +11,27 @@ $color-brand-100: #c03b3b;
 $text-font-stack: 'Inter', 'Arial', sans-serif;
 
 @mixin breakpoint($point) {
+  @if $point == sm {
+    // 576px
+    @media (min-width: 36em) {
+      @content;
+    }
+  }
   @if $point == md {
     // 768px
     @media (min-width: 48em) {
+      @content;
+    }
+  }
+  @if $point == lg {
+    // 992px
+    @media (min-width: 62em) {
+      @content;
+    }
+  }
+  @if $point == xl {
+    // 1200px
+    @media (min-width: 75em) {
       @content;
     }
   }
