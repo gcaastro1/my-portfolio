@@ -1,3 +1,5 @@
+'use-client'
+
 import { contactsData } from '@/utils/contactsData'
 import styles from './style.module.scss'
 import Image from 'next/image'
@@ -7,7 +9,7 @@ const Contacts = () => {
   const data = contactsData
 
   return (
-    <section className={styles.contacts} id='contacts'>
+    <section className={styles.contacts} id="contacts">
       <div className={`${styles.contacts__container} container`}>
         <div className={styles.about__content}>
           <h1 className={styles.contacts__content__title}>Contacts.</h1>
@@ -22,10 +24,11 @@ const Contacts = () => {
                 className={styles.contacts__list__item__icon}
                 style={{ backgroundColor: contact.bg }}
                 href={contact.link}
-                target='_blank'
+                target="_blank"
               >
                 <Image alt={`${contact.title} logo`} src={contact.img} />
               </Link>
+
               <div className={styles.contacts__list__item__text}>
                 <h3>{contact.title}</h3>
                 <p>{contact.subtitle}</p>

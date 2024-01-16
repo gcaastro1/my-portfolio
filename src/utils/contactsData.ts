@@ -27,11 +27,11 @@ export const contactsData: ContactsData[] = [
     bg: '#1F62A6',
     link: 'https://www.linkedin.com/in/gucaastro1/',
   },
-  {
+  /*{
     img: Gmail,
     title: 'My Email.',
     subtitle: 'Send me an email reporting feedbacks, suggestions and ideas',
     bg: '#C03B3B',
     link: 'mailto=gcaastro1@gmail.com',
-  },
+  },*/
 ]
