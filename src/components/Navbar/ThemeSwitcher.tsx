@@ -22,11 +22,17 @@ const ThemeSwitch = () => {
   }
 
   return (
-    <div className={style.switch} data-theme={theme} onClick={handleSwitch}>
+    <button
+      type="button"
+      className={style.switch}
+      data-theme={theme}
+      onClick={handleSwitch}
+      aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} theme`}
+    >
       <motion.div className={style.switch__handle} layout transition={spring}>
         <Icon size={15} />
       </motion.div>
-    </div>
+    </button>
   )
 }
 

@@ -27,11 +27,11 @@ const stackData = [
     img: JavascriptPlain,
   },
   {
-    title: 'Type Script',
+    title: 'TypeScript',
     img: TypescriptPlain,
   },
   {
-    title: 'Node JS',
+    title: 'Node.js',
     img: NodejsPlain,
   },
   {
@@ -51,7 +51,7 @@ const stackData = [
     img: DockerPlain,
   },
   {
-    title: 'Postgre SQL',
+    title: 'PostgreSQL',
     img: PostgresqlPlain,
   },
   {

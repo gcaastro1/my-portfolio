@@ -1,5 +1,3 @@
-'use-client'
-
 import { contactsData } from '@/utils/contactsData'
 import styles from './style.module.scss'
 import Image from 'next/image'
@@ -11,20 +9,25 @@ const Contacts = () => {
   return (
     <section className={styles.contacts} id="contacts">
       <div className={`${styles.contacts__container} container`}>
-        <div className={styles.about__content}>
-          <h1 className={styles.contacts__content__title}>Contacts.</h1>
+        <div className={styles.contacts__content}>
+          <h1 className={styles.contacts__content__title}>Contact.</h1>
           <p className={styles.contacts__content__text}>
-            Let&apos;s talk and develop solutions for your company, together!
+            Interested in working together or discussing an opportunity? Feel
+            free to contact me through LinkedIn, email or WhatsApp.
           </p>
         </div>
         <ul className={styles.contacts__list}>
-          {data.map((contact, i) => (
-            <li key={i} className={styles.contacts__list__item}>
+          {data.map((contact) => (
+            <li key={contact.title} className={styles.contacts__list__item}>
               <Link
                 className={styles.contacts__list__item__icon}
                 style={{ backgroundColor: contact.bg }}
                 href={contact.link}
-                target="_blank"
+                target={contact.link.startsWith('mailto:') ? undefined : '_blank'}
+                rel={
+                  contact.link.startsWith('mailto:') ? undefined : 'noreferrer'
+                }
+                aria-label={`Contact Gustavo via ${contact.title}`}
               >
                 <Image alt={`${contact.title} logo`} src={contact.img} />
               </Link>

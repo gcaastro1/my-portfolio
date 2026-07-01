@@ -66,10 +66,12 @@
   &__list {
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     gap: 40px;
 
     @include breakpoint(md) {
       flex-direction: column;
+      flex-wrap: nowrap;
     }
 
     &__item {

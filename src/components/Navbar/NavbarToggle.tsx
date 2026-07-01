@@ -13,13 +13,16 @@ const NavbarToggle = ({ menuToggle, isOpen }: ToggleProps) => {
   const Icon = isOpen ? X : List
 
   return (
-    <motion.div
+    <motion.button
+      type="button"
       className={style.toggle}
-      onClick={() => menuToggle()}
+      onClick={menuToggle}
       whileTap={{ scale: 0.6 }}
+      aria-label={isOpen ? 'Close navigation menu' : 'Open navigation menu'}
+      aria-expanded={isOpen}
     >
       <Icon size={32} className="text" />
-    </motion.div>
+    </motion.button>
   )
 }
 

@@ -1,12 +1,13 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 
 import styles from './style.module.scss'
 import ThemeSwitch from './ThemeSwitcher'
 import NavbarToggle from './NavbarToggle'
-import Link from 'next/link'
+
+const DESKTOP_BREAKPOINT = 992
 
 interface PageSizeProps {
   width: number | undefined
@@ -26,11 +27,16 @@ const navItems = [
   },
   {
     id: 3,
-    title: 'Work',
+    title: 'Projects',
     redirect: 'works',
   },
   {
     id: 4,
+    title: 'Experience',
+    redirect: 'experience',
+  },
+  {
+    id: 5,
     title: 'Contact',
     redirect: 'contacts',
   },
@@ -66,7 +72,7 @@ const NavButtons = () => {
   }, [])
 
   useEffect(() => {
-    if (size.width! > 768 && isOpen) {
+    if ((size.width ?? 0) >= DESKTOP_BREAKPOINT && isOpen) {
       setIsOpen(false)
     }
   }, [size.width, isOpen])
@@ -77,10 +83,14 @@ const NavButtons = () => {
 
   return (
     <>
-      <span className={isOpen && size.width! < 768 ? styles.isMenu : ''}></span>
+      <span
+        className={
+          isOpen && (size.width ?? 0) < DESKTOP_BREAKPOINT ? styles.isMenu : ''
+        }
+      ></span>
       <div
         className={`${styles.buttons} ${
-          isOpen && size.width! < 768 ? styles.isMenu : ''
+          isOpen && (size.width ?? 0) < DESKTOP_BREAKPOINT ? styles.isMenu : ''
         } background`}
       >
         <motion.div className={`${styles.buttons__link} background`}>
