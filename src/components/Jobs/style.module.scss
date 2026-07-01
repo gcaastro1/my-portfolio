@@ -1,4 +1,4 @@
-@use "abstracts" as *;
+@use 'abstracts' as *;
 
 .jobs {
   scroll-margin-block-start: 110px;
@@ -17,22 +17,9 @@
   }
 
   &__list {
-
-    display: flex;
+    display: grid;
     gap: 20px;
-
-    overflow-x: auto;
-
-    @include breakpoint(md) {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      overflow: none;
-    }
-
-    @include breakpoint(lg) {
-      grid-template-columns: repeat(3, 1fr);
-    }
-    
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
   }
 }
 
@@ -48,12 +35,13 @@
   flex-direction: column;
   justify-content: space-between;
   gap: 20px;
-  min-width: 297px;
+  width: 100%;
+  min-width: 0;
 
   &__header {
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    flex-direction: column;
+    gap: 12px;
 
     h3 {
       font-weight: bold;
@@ -65,11 +53,18 @@
       max-width: 30ch;
     }
 
-    & span {
-      background-color: $color-gray-200;
-      color: $color-gray-600;
-      border-radius: 8px;
-      padding: 2px 10px;
+  }
+
+  &__stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+
+    li {
+      background-color: $color-gray-500;
+      border-radius: 999px;
+      padding: 5px 9px;
+      font-size: 12px;
     }
   }
 
@@ -83,7 +78,7 @@
       padding: 6px 10px;
       color: $color-gray-600;
       background-color: $color-gray-300;
-      transition: all .3s ease;
+      transition: all 0.3s ease;
 
       &:hover {
         background-color: $color-brand-100;

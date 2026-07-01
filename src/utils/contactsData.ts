@@ -1,9 +1,10 @@
 import WhatsApp from '@/assets/contacts/whatsapp.svg'
 import Linkedin from '@/assets/contacts/linkedin.svg'
 import Gmail from '@/assets/contacts/gmail.svg'
+import type { ImageProps } from 'next/image'
 
 export interface ContactsData {
-  img: any
+  img: ImageProps['src']
   title: string
   subtitle: string
   bg: string
@@ -13,25 +14,25 @@ export interface ContactsData {
 export const contactsData: ContactsData[] = [
   {
     img: WhatsApp,
-    title: 'My Whatsapp.',
+    title: 'WhatsApp',
     subtitle:
-      "I'm available for a voice chat or text, let's about creativity together?",
+      'Send me a message to discuss an opportunity, project or collaboration.',
     bg: '#5AA640',
-    link: 'https://wa.me/+5516981293398',
+    link: 'https://wa.me/5516981293398',
   },
   {
     img: Linkedin,
-    title: 'My Linkedin.',
+    title: 'LinkedIn',
     subtitle:
-      'We can create more constant interactions as well as a sharing network',
+      'Connect with me and learn more about my professional experience.',
     bg: '#1F62A6',
     link: 'https://www.linkedin.com/in/gucaastro1/',
   },
-  /*{
+  {
     img: Gmail,
-    title: 'My Email.',
-    subtitle: 'Send me an email reporting feedbacks, suggestions and ideas',
+    title: 'Email',
+    subtitle: 'Contact me directly at gcaastro1@gmail.com.',
     bg: '#C03B3B',
-    link: 'mailto=gcaastro1@gmail.com',
-  },*/
+    link: 'mailto:gcaastro1@gmail.com',
+  },
 ]

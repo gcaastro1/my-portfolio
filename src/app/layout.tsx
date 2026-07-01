@@ -6,8 +6,9 @@ import { ThemeProvider } from '@/contexts/ThemeContext'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Gustavo Lima - Full-Stack Developer',
-  description: 'This is my portfolio. Developed with Next.js',
+  title: 'Gustavo Lima | Front-End Developer',
+  description:
+    'Front-End Developer focused on React.js, Next.js and TypeScript, building modern web applications, business interfaces and ERP-focused solutions.',
 }
 
 export default function RootLayout({
@@ -16,7 +17,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="pt-br">
+    <html lang="en">
       <body className={inter.className}>
         <ThemeProvider>{children}</ThemeProvider>
       </body>

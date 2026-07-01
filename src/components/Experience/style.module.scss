@@ -1,0 +1,95 @@
+@use 'abstracts' as *;
+
+.experience {
+  margin-top: 80px;
+  background-color: $color-gray-600;
+  color: $color-gray-200;
+  scroll-margin-block-start: 110px;
+
+  &__container {
+    padding-top: 80px;
+    padding-bottom: 80px;
+  }
+
+  &__title {
+    margin-bottom: 40px;
+    font-size: 48px;
+    font-weight: 700;
+
+    @include breakpoint(md) {
+      font-size: 64px;
+    }
+  }
+
+  &__timeline {
+    display: grid;
+    gap: 24px;
+  }
+
+  &__item {
+    position: relative;
+    padding: 0 0 32px 28px;
+    border-left: 2px solid $color-gray-500;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 5px;
+      left: -7px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background-color: $color-brand-100;
+    }
+
+    ul {
+      display: grid;
+      gap: 8px;
+      margin-top: 18px;
+    }
+
+    li {
+      position: relative;
+      padding-left: 18px;
+      font-size: 15px;
+      line-height: 150%;
+      color: $color-gray-300;
+
+      &::before {
+        content: '•';
+        position: absolute;
+        left: 0;
+        color: $color-brand-100;
+      }
+    }
+  }
+
+  &__heading {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    @include breakpoint(md) {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+
+    h3 {
+      font-size: 22px;
+      font-weight: 700;
+    }
+
+    p {
+      margin-top: 5px;
+      font-size: 16px;
+      font-weight: 600;
+    }
+
+    time {
+      color: $color-gray-300;
+      font-size: 14px;
+      white-space: nowrap;
+    }
+  }
+}

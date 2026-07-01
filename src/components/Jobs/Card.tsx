@@ -1,23 +1,31 @@
 import styles from './style.module.scss'
-import { ReposType } from '.'
 import Link from 'next/link'
+import { ProjectData } from '@/utils/projectsData'
 
 interface Props {
-  job: ReposType
+  project: ProjectData
 }
 
-const Card = ({ job }: Props) => {
+const Card = ({ project }: Props) => {
   return (
     <li className={styles.card}>
       <div className={styles.card__header}>
-        <h3>{job.name}</h3>
-        {job.language && <span>{job.language}</span>}
+        <h3>{project.title}</h3>
       </div>
 
-      <p>{job.description}</p>
+      <p>{project.description}</p>
+      <ul className={styles.card__stack} aria-label="Technologies used">
+        {project.stack.map((technology) => (
+          <li key={technology}>{technology}</li>
+        ))}
+      </ul>
       <div className={styles.card__links}>
-        <Link href={job.html_url}>Repo</Link>
-        {job.homepage && <Link href={job.homepage}>Deploy</Link>}
+        <Link href={project.repository} target="_blank" rel="noreferrer">
+          Repository
+        </Link>
+        <Link href={project.deploy} target="_blank" rel="noreferrer">
+          Live project
+        </Link>
       </div>
     </li>
   )
