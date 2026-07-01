@@ -1,66 +1,47 @@
-import {
-  Html5Plain,
-  Css3Plain,
-  JavascriptPlain,
-  TypescriptPlain,
-  NodejsPlain,
-  ReactOriginal,
-  NextjsOriginal,
-  DockerPlain,
-  PostgresqlPlain,
-  GitPlain,
-  PythonPlain,
-  NestjsPlain,
-} from 'devicons-react'
+export interface StackCategory {
+  title: string
+  code: string
+  technologies: string[]
+}
 
-const stackData = [
+const stackData: StackCategory[] = [
   {
-    title: 'HTML',
-    img: Html5Plain,
+    title: 'Frontend',
+    code: 'frontend.ts',
+    technologies: [
+      'React.js',
+      'Next.js',
+      'TypeScript',
+      'JavaScript',
+      'HTML5',
+      'CSS3',
+      'Sass',
+    ],
   },
   {
-    title: 'CSS',
-    img: Css3Plain,
+    title: 'UI & Styling',
+    code: 'interface.fig',
+    technologies: [
+      'Tailwind CSS',
+      'Styled Components',
+      'Material UI',
+      'Figma',
+    ],
   },
   {
-    title: 'JS',
-    img: JavascriptPlain,
+    title: 'Backend & Data',
+    code: 'services.sql',
+    technologies: ['SQL', 'Firebase', 'Node.js', 'Docker'],
   },
   {
-    title: 'TypeScript',
-    img: TypescriptPlain,
+    title: 'Legacy & Business',
+    code: 'business.pas',
+    technologies: ['Delphi/VCL', 'ERP Systems', 'Business Rules'],
   },
   {
-    title: 'Node.js',
-    img: NodejsPlain,
-  },
-  {
-    title: 'React',
-    img: ReactOriginal,
-  },
-  {
-    title: 'Next.js',
-    img: NextjsOriginal,
-  },
-  {
-    title: 'Nest.js',
-    img: NestjsPlain,
-  },
-  {
-    title: 'Docker',
-    img: DockerPlain,
-  },
-  {
-    title: 'PostgreSQL',
-    img: PostgresqlPlain,
-  },
-  {
-    title: 'Git',
-    img: GitPlain,
-  },
-  {
-    title: 'Python',
-    img: PythonPlain,
+    title: 'Tools & Delivery',
+    code: 'workflow.yml',
+    technologies: ['Git', 'GitHub', 'Vercel', 'Scrum', 'Kanban'],
   },
 ]
 

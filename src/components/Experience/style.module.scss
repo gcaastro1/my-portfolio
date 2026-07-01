@@ -1,65 +1,98 @@
 @use 'abstracts' as *;
 
 .experience {
-  margin-top: 80px;
-  background-color: $color-gray-600;
-  color: $color-gray-200;
-  scroll-margin-block-start: 110px;
-
-  &__container {
-    padding-top: 80px;
-    padding-bottom: 80px;
-  }
-
-  &__title {
-    margin-bottom: 40px;
-    font-size: 48px;
-    font-weight: 700;
-
-    @include breakpoint(md) {
-      font-size: 64px;
-    }
-  }
+  border-block: 1px solid var(--line);
+  background: color-mix(in srgb, var(--bg-elevated) 58%, transparent);
 
   &__timeline {
-    display: grid;
-    gap: 24px;
-  }
-
-  &__item {
     position: relative;
-    padding: 0 0 32px 28px;
-    border-left: 2px solid $color-gray-500;
+    display: grid;
+    gap: 1.6rem;
 
     &::before {
       content: '';
       position: absolute;
-      top: 5px;
-      left: -7px;
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-      background-color: $color-brand-100;
+      top: 2rem;
+      bottom: 2rem;
+      left: 2.1rem;
+      width: 1px;
+      background: linear-gradient(var(--accent), var(--line), transparent);
+
+      @include breakpoint(md) {
+        left: 3.1rem;
+      }
+    }
+  }
+
+  &__item {
+    position: relative;
+    display: grid;
+    grid-template-columns: 4.4rem minmax(0, 1fr);
+    gap: 1.4rem;
+
+    @include breakpoint(md) {
+      grid-template-columns: 6.4rem minmax(0, 1fr);
+      gap: 2rem;
+    }
+  }
+
+  &__marker {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    width: 4.4rem;
+    height: 4.4rem;
+    color: #07110e;
+    background: var(--accent);
+    border: 0.6rem solid var(--bg-elevated);
+    border-radius: 50%;
+    place-items: center;
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+    font-weight: 800;
+
+    @include breakpoint(md) {
+      width: 6.4rem;
+      height: 6.4rem;
+      border-width: 1rem;
+      font-size: 1rem;
+    }
+  }
+
+  &__card {
+    padding: 2.2rem;
+    border: 1px solid var(--line);
+    border-radius: 1.6rem;
+    background: var(--surface);
+    transition: transform 200ms ease, border-color 200ms ease, box-shadow 200ms ease;
+
+    &:hover {
+      border-color: var(--line-strong);
+      box-shadow: 0 2rem 5rem var(--shadow);
+      transform: translateX(0.5rem);
+    }
+
+    @include breakpoint(md) {
+      padding: 2.8rem 3rem;
     }
 
     ul {
       display: grid;
-      gap: 8px;
-      margin-top: 18px;
+      margin-top: 2rem;
+      gap: 1rem;
     }
 
     li {
-      position: relative;
-      padding-left: 18px;
-      font-size: 15px;
-      line-height: 150%;
-      color: $color-gray-300;
+      display: grid;
+      grid-template-columns: 1.8rem 1fr;
+      gap: 0.7rem;
+      color: var(--text-muted);
+      font-size: 1.35rem;
+      line-height: 1.6;
 
-      &::before {
-        content: '•';
-        position: absolute;
-        left: 0;
-        color: $color-brand-100;
+      svg {
+        margin-top: 0.35rem;
+        color: var(--accent);
       }
     }
   }
@@ -67,29 +100,40 @@
   &__heading {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 1rem;
 
     @include breakpoint(md) {
       flex-direction: row;
-      justify-content: space-between;
       align-items: flex-start;
+      justify-content: space-between;
     }
 
     h3 {
-      font-size: 22px;
-      font-weight: 700;
-    }
-
-    p {
-      margin-top: 5px;
-      font-size: 16px;
-      font-weight: 600;
+      margin-top: 0.5rem;
+      font-size: clamp(1.8rem, 4vw, 2.4rem);
+      font-weight: 720;
+      letter-spacing: -0.025em;
     }
 
     time {
-      color: $color-gray-300;
-      font-size: 14px;
+      display: inline-flex;
+      width: max-content;
+      padding: 0.65rem 0.9rem;
+      color: var(--text-muted);
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      font-family: 'Courier New', monospace;
+      font-size: 1rem;
       white-space: nowrap;
     }
+  }
+
+  &__company {
+    color: var(--accent);
+    font-family: 'Courier New', monospace;
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
   }
 }

@@ -1,0 +1,47 @@
+@use 'abstracts' as *;
+
+.footer {
+  border-top: 1px solid var(--line);
+  background: var(--bg-elevated);
+
+  &__container {
+    display: flex;
+    padding-block: 3rem;
+    flex-direction: column;
+    gap: 2rem;
+
+    @include breakpoint(sm) {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    p {
+      font-size: 1.2rem;
+      font-weight: 650;
+    }
+
+    span {
+      display: block;
+      margin-top: 0.5rem;
+      color: var(--text-muted);
+      font-family: 'Courier New', monospace;
+      font-size: 1rem;
+    }
+
+    a {
+      display: inline-flex;
+      width: max-content;
+      align-items: center;
+      gap: 0.7rem;
+      color: var(--text-muted);
+      font-size: 1.1rem;
+      font-weight: 650;
+      transition: color 180ms ease;
+
+      &:hover {
+        color: var(--accent);
+      }
+    }
+  }
+}

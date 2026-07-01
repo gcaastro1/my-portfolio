@@ -1,14 +1,14 @@
 'use client'
 
 import React, { useEffect, useState } from 'react'
-import { ThemeContextProps, ThemeProviderProps } from './props'
+import { Theme, ThemeContextProps, ThemeProviderProps } from './props'
 
 export const initialThemeState = {
-  theme: 'light',
+  theme: 'dark' as Theme,
 }
 
 const ThemeContext = React.createContext({
-  theme: 'light',
+  theme: initialThemeState.theme,
 } as ThemeContextProps)
 
 const ThemeProvider = ({ children }: ThemeProviderProps) => {
@@ -16,7 +16,9 @@ const ThemeProvider = ({ children }: ThemeProviderProps) => {
 
   useEffect(() => {
     const savedTheme = localStorage.getItem('@Theme')
-    if (savedTheme) setTheme(savedTheme)
+    if (savedTheme === 'dark' || savedTheme === 'light') {
+      setTheme(savedTheme)
+    }
   }, [])
 
   useEffect(() => {
@@ -25,7 +27,9 @@ const ThemeProvider = ({ children }: ThemeProviderProps) => {
 
   return (
     <ThemeContext.Provider value={{ theme, setTheme }}>
-      <div className={`${theme}`}>{children}</div>
+      <div className={theme} data-theme={theme}>
+        {children}
+      </div>
     </ThemeContext.Provider>
   )
 }

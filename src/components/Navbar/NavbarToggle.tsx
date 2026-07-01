@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import style from './style.module.scss'
+import styles from './style.module.scss'
 import { List, X } from '@phosphor-icons/react'
 
 interface ToggleProps {
@@ -15,13 +15,13 @@ const NavbarToggle = ({ menuToggle, isOpen }: ToggleProps) => {
   return (
     <motion.button
       type="button"
-      className={style.toggle}
+      className={styles.toggle}
       onClick={menuToggle}
       whileTap={{ scale: 0.6 }}
       aria-label={isOpen ? 'Close navigation menu' : 'Open navigation menu'}
       aria-expanded={isOpen}
     >
-      <Icon size={32} className="text" />
+      <Icon size={22} weight="bold" />
     </motion.button>
   )
 }

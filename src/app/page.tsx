@@ -1,19 +1,28 @@
 import About from '@/components/About'
 import Contacts from '@/components/Contacts'
 import Experience from '@/components/Experience'
+import Footer from '@/components/Footer'
 import Header from '@/components/Header'
-import Jobs from '@/components/Jobs'
 import Navbar from '@/components/Navbar'
+import Projects from '@/components/Projects'
+import Stack from '@/components/Stack'
 
 export default function Home() {
   return (
-    <main className="background">
+    <>
+      <a className="skip-link" href="#main-content">
+        Skip to content
+      </a>
       <Navbar />
-      <Header />
-      <About />
-      <Jobs />
-      <Experience />
-      <Contacts />
-    </main>
+      <main className="site-shell" id="main-content">
+        <Header />
+        <About />
+        <Experience />
+        <Projects />
+        <Stack />
+        <Contacts />
+      </main>
+      <Footer />
+    </>
   )
 }

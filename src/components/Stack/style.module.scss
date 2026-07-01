@@ -1,0 +1,85 @@
+@use 'abstracts' as *;
+
+.stack {
+  border-block: 1px solid var(--line);
+  background: color-mix(in srgb, var(--bg-elevated) 58%, transparent);
+
+  &__grid {
+    display: grid;
+    gap: 1.4rem;
+
+    @include breakpoint(sm) {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    @include breakpoint(lg) {
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+    }
+  }
+
+  &__card {
+    min-height: 25rem;
+    padding: 2.2rem;
+    border: 1px solid var(--line);
+    border-radius: 1.6rem;
+    background: var(--surface);
+    transition: border-color 200ms ease, box-shadow 200ms ease;
+
+    &:hover {
+      border-color: var(--line-strong);
+      box-shadow: 0 2rem 5rem var(--shadow);
+    }
+
+    @include breakpoint(lg) {
+      grid-column: span 2;
+
+      &:nth-child(4),
+      &:nth-child(5) {
+        grid-column: span 3;
+      }
+    }
+
+    h3 {
+      margin-top: 2.8rem;
+      font-size: 2rem;
+      font-weight: 720;
+      letter-spacing: -0.025em;
+    }
+
+    ul {
+      display: flex;
+      margin-top: 2rem;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+    }
+
+    li {
+      display: inline-flex;
+      padding: 0.7rem 0.9rem;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--text-muted);
+      border: 1px solid var(--line);
+      border-radius: 0.8rem;
+      background: var(--surface-soft);
+      font-size: 1.1rem;
+
+      svg {
+        color: var(--accent);
+      }
+    }
+  }
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: var(--accent);
+
+    span {
+      color: var(--text-muted);
+      font-family: 'Courier New', monospace;
+      font-size: 0.95rem;
+    }
+  }
+}
