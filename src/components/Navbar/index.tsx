@@ -4,12 +4,12 @@ import Logo from './Logo'
 
 const Navbar = () => {
   return (
-    <div className={`${styles.navbar} background border__bottom`}>
+    <header className={styles.navbar}>
       <div className={styles.navbar__content}>
         <Logo />
         <NavButtons />
       </div>
-    </div>
+    </header>
   )
 }
 

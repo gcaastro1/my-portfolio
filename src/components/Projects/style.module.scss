@@ -1,0 +1,319 @@
+@use 'abstracts' as *;
+
+.projects {
+  &__list {
+    display: grid;
+    gap: 2rem;
+  }
+
+  &__note {
+    margin-top: 2.2rem;
+    color: var(--text-muted);
+    font-family: 'Courier New', monospace;
+    font-size: 1.1rem;
+    text-align: right;
+  }
+}
+
+.project {
+  display: grid;
+  border: 1px solid var(--line);
+  border-radius: 2rem;
+  background: var(--surface);
+  box-shadow: 0 2rem 6rem var(--shadow);
+  overflow: hidden;
+
+  @include breakpoint(lg) {
+    min-height: 54rem;
+    grid-template-columns: minmax(0, 1.16fr) minmax(36rem, 0.84fr);
+  }
+
+  &__visual {
+    min-height: 34rem;
+    padding: 2rem;
+    background:
+      radial-gradient(circle at 20% 20%, color-mix(in srgb, var(--accent) 13%, transparent), transparent 30%),
+      radial-gradient(circle at 80% 75%, color-mix(in srgb, var(--accent-secondary) 15%, transparent), transparent 28%),
+      var(--bg-elevated);
+
+    @include breakpoint(md) {
+      padding: 4rem;
+    }
+  }
+
+  &__content {
+    display: flex;
+    padding: 3rem 2.2rem;
+    flex-direction: column;
+    justify-content: center;
+
+    @include breakpoint(md) {
+      padding: 4rem;
+    }
+
+    h3 {
+      margin-top: 2.6rem;
+      font-size: clamp(3.2rem, 7vw, 5.4rem);
+      font-weight: 780;
+      letter-spacing: -0.055em;
+      line-height: 0.95;
+    }
+
+    > p {
+      margin-top: 2rem;
+      color: var(--text-muted);
+      font-size: 1.45rem;
+      line-height: 1.7;
+    }
+  }
+
+  &__meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    color: var(--accent);
+    font-family: 'Courier New', monospace;
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  &__status {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    color: var(--text-muted);
+
+    i {
+      width: 0.7rem;
+      height: 0.7rem;
+      background: var(--accent);
+      border-radius: 50%;
+      box-shadow: 0 0 1rem var(--accent);
+    }
+  }
+
+  &__stack {
+    display: flex;
+    margin-top: 2.4rem;
+    flex-wrap: wrap;
+    gap: 0.7rem;
+
+    li {
+      padding: 0.65rem 0.9rem;
+      color: var(--text-muted);
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: var(--surface-soft);
+      font-family: 'Courier New', monospace;
+      font-size: 1rem;
+    }
+  }
+
+  &__links {
+    display: flex;
+    margin-top: 3rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+
+    a {
+      display: inline-flex;
+      min-height: 4.6rem;
+      padding: 1.1rem 1.4rem;
+      align-items: center;
+      justify-content: center;
+      gap: 0.7rem;
+      color: var(--text);
+      border: 1px solid var(--line);
+      border-radius: 1.1rem;
+      font-size: 1.25rem;
+      font-weight: 700;
+      transition: color 180ms ease, border-color 180ms ease, transform 180ms ease;
+
+      &:hover {
+        color: var(--accent);
+        border-color: var(--line-strong);
+        transform: translateY(-3px);
+      }
+    }
+  }
+}
+
+.preview {
+  height: 100%;
+  min-height: 30rem;
+  border: 1px solid var(--line);
+  border-radius: 1.6rem;
+  background: #0b1018;
+  box-shadow: 0 2rem 6rem rgba(0, 0, 0, 0.32);
+  overflow: hidden;
+  transform: perspective(1000px) rotateY(1.5deg) rotateX(1deg);
+  transition: transform 300ms ease;
+
+  .project:hover & {
+    transform: perspective(1000px) rotateY(-1deg) rotateX(0) translateY(-0.5rem);
+  }
+
+  &__browser {
+    display: flex;
+    height: 3.8rem;
+    padding-inline: 1.2rem;
+    align-items: center;
+    gap: 0.55rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+
+    > span {
+      width: 0.7rem;
+      height: 0.7rem;
+      border-radius: 50%;
+
+      &:nth-child(1) {
+        background: #ff6b6b;
+      }
+
+      &:nth-child(2) {
+        background: #ffd166;
+      }
+
+      &:nth-child(3) {
+        background: #8ef6d2;
+      }
+    }
+
+    p {
+      margin-left: auto;
+      color: #718096;
+      font-family: 'Courier New', monospace;
+      font-size: 0.85rem;
+    }
+  }
+
+  &__layout {
+    display: grid;
+    min-height: 28rem;
+    grid-template-columns: 5rem 1fr;
+
+    aside {
+      display: flex;
+      padding-block: 1.4rem;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.5rem;
+      border-right: 1px solid rgba(255, 255, 255, 0.08);
+
+      i {
+        width: 1.8rem;
+        height: 0.35rem;
+        background: #344052;
+        border-radius: 1rem;
+
+        &:nth-of-type(1) {
+          background: #8ef6d2;
+        }
+      }
+    }
+  }
+
+  &__brand {
+    display: grid;
+    width: 2.5rem;
+    height: 2.5rem;
+    color: #07110e;
+    background: #8ef6d2;
+    border-radius: 0.6rem;
+    place-items: center;
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    font-weight: 800;
+  }
+
+  &__canvas {
+    padding: clamp(2rem, 5vw, 4rem);
+
+    > p {
+      color: #8ef6d2;
+      font-family: 'Courier New', monospace;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+    }
+
+    > h3 {
+      margin-top: 1rem;
+      color: #f4f7fb;
+      font-size: clamp(2.2rem, 5vw, 4.2rem);
+      font-weight: 780;
+      letter-spacing: -0.06em;
+      line-height: 0.95;
+
+      span {
+        display: block;
+        color: transparent;
+        -webkit-text-stroke: 1px #8ef6d2;
+      }
+    }
+  }
+
+  &__metrics {
+    display: grid;
+    margin-top: 3rem;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.8rem;
+
+    article {
+      padding: 1rem;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 0.8rem;
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    small,
+    strong {
+      display: block;
+    }
+
+    small {
+      color: #718096;
+      font-size: 0.7rem;
+    }
+
+    strong {
+      margin-top: 0.4rem;
+      color: #f4f7fb;
+      font-size: 1.1rem;
+    }
+  }
+
+  &__chart {
+    display: flex;
+    height: 5rem;
+    margin-top: 2rem;
+    align-items: flex-end;
+    gap: 0.5rem;
+
+    span {
+      width: 100%;
+      height: 35%;
+      background: linear-gradient(#8ef6d2, rgba(142, 246, 210, 0.15));
+      border-radius: 0.3rem 0.3rem 0 0;
+
+      &:nth-child(2) {
+        height: 58%;
+      }
+
+      &:nth-child(3) {
+        height: 46%;
+      }
+
+      &:nth-child(4) {
+        height: 76%;
+      }
+
+      &:nth-child(5) {
+        height: 92%;
+      }
+    }
+  }
+}

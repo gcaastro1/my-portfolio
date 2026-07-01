@@ -1,0 +1,58 @@
+.heading {
+  max-width: 78rem;
+  margin-bottom: 5rem;
+
+  &__eyebrow {
+    display: flex;
+    margin-bottom: 1.4rem;
+    align-items: center;
+    gap: 1rem;
+    color: var(--accent);
+    font-family: 'Courier New', monospace;
+    font-size: 1.15rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+
+    &::before {
+      content: '';
+      width: 3.2rem;
+      height: 1px;
+      background: var(--accent);
+    }
+  }
+
+  &__title {
+    max-width: 18ch;
+    font-size: clamp(3.8rem, 8vw, 7.2rem);
+    font-weight: 780;
+    letter-spacing: -0.055em;
+    line-height: 0.98;
+  }
+
+  &__description {
+    max-width: 64rem;
+    margin-top: 2rem;
+    color: var(--text-muted);
+    font-size: 1.55rem;
+    line-height: 1.7;
+  }
+}
+
+.headingRight {
+  margin-left: auto;
+  text-align: right;
+
+  .heading__eyebrow {
+    justify-content: flex-end;
+
+    &::before {
+      order: 2;
+    }
+  }
+
+  .heading__title,
+  .heading__description {
+    margin-left: auto;
+  }
+}

@@ -1,125 +1,89 @@
 'use client'
 
+import { AnimatePresence, motion } from 'framer-motion'
+import Link from 'next/link'
 import { useEffect, useState } from 'react'
-import { motion } from 'framer-motion'
 
-import styles from './style.module.scss'
-import ThemeSwitch from './ThemeSwitcher'
 import NavbarToggle from './NavbarToggle'
-
-const DESKTOP_BREAKPOINT = 992
-
-interface PageSizeProps {
-  width: number | undefined
-  height: number | undefined
-}
+import ThemeSwitcher from './ThemeSwitcher'
+import styles from './style.module.scss'
 
 const navItems = [
-  {
-    id: 1,
-    title: 'Home',
-    redirect: 'header',
-  },
-  {
-    id: 2,
-    title: 'About',
-    redirect: 'about',
-  },
-  {
-    id: 3,
-    title: 'Projects',
-    redirect: 'works',
-  },
-  {
-    id: 4,
-    title: 'Experience',
-    redirect: 'experience',
-  },
-  {
-    id: 5,
-    title: 'Contact',
-    redirect: 'contacts',
-  },
+  { title: 'Home', href: '#home' },
+  { title: 'About', href: '#about' },
+  { title: 'Experience', href: '#experience' },
+  { title: 'Projects', href: '#projects' },
+  { title: 'Stack', href: '#stack' },
+  { title: 'Contact', href: '#contact' },
 ]
 
 const NavButtons = () => {
-  const [active, setActive] = useState(1)
   const [isOpen, setIsOpen] = useState(false)
-  const [size, setSize] = useState<PageSizeProps>({
-    width: undefined,
-    height: undefined,
-  })
-
-  const scroll = (id: string) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
-  }
 
   useEffect(() => {
-    setSize({
-      width: window.innerWidth,
-      height: window.innerHeight,
-    })
+    document.body.style.overflow = isOpen ? 'hidden' : ''
 
-    const handleResize = () => {
-      setSize({
-        width: window.innerWidth,
-        height: window.innerHeight,
-      })
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') setIsOpen(false)
     }
-    window.addEventListener('resize', handleResize)
 
-    return () => window.removeEventListener('resize', handleResize)
-  }, [])
+    window.addEventListener('keydown', closeOnEscape)
 
-  useEffect(() => {
-    if ((size.width ?? 0) >= DESKTOP_BREAKPOINT && isOpen) {
-      setIsOpen(false)
+    return () => {
+      document.body.style.overflow = ''
+      window.removeEventListener('keydown', closeOnEscape)
     }
-  }, [size.width, isOpen])
+  }, [isOpen])
 
-  const menuToggleHandler = () => {
-    setIsOpen((p) => !p)
-  }
+  const closeMenu = () => setIsOpen(false)
 
   return (
-    <>
-      <span
-        className={
-          isOpen && (size.width ?? 0) < DESKTOP_BREAKPOINT ? styles.isMenu : ''
-        }
-      ></span>
-      <div
-        className={`${styles.buttons} ${
-          isOpen && (size.width ?? 0) < DESKTOP_BREAKPOINT ? styles.isMenu : ''
-        } background`}
+    <div className={styles.navigation}>
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            className={styles.navigation__backdrop}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={closeMenu}
+            aria-hidden="true"
+          />
+        )}
+      </AnimatePresence>
+
+      <nav
+        className={`${styles.navigation__menu} ${
+          isOpen ? styles.navigation__menuOpen : ''
+        }`}
+        aria-label="Main navigation"
       >
-        <motion.div className={`${styles.buttons__link} background`}>
-          {navItems.map((item) => (
-            <button
-              type="button"
-              className={styles.buttons__link__default}
-              key={`button-${item.id}`}
-              onClick={() => {
-                setActive(item.id)
-                scroll(item.redirect)
-              }}
-            >
-              <span className={active == item.id ? 'text__active' : 'text'}>
-                {item.title}
-              </span>
-              {active == item.id && (
-                <motion.div
-                  layoutId="nav-bg"
-                  className={`${styles.buttons__link__default__active} reversebg`}
-                ></motion.div>
-              )}
-            </button>
-          ))}
-        </motion.div>
-        <ThemeSwitch />
+        {navItems.map((item, index) => (
+          <motion.div
+            key={item.href}
+            initial={false}
+            animate={isOpen ? { opacity: 1, x: 0 } : undefined}
+            transition={{ delay: index * 0.035 }}
+          >
+            <Link href={item.href} onClick={closeMenu}>
+              <span>0{index + 1}</span>
+              {item.title}
+            </Link>
+          </motion.div>
+        ))}
+      </nav>
+
+      <div className={styles.navigation__actions}>
+        <span className={styles.language} title="Portuguese version coming soon">
+          EN
+        </span>
+        <ThemeSwitcher />
+        <NavbarToggle
+          menuToggle={() => setIsOpen((current) => !current)}
+          isOpen={isOpen}
+        />
       </div>
-      <NavbarToggle menuToggle={menuToggleHandler} isOpen={isOpen} />
-    </>
+    </div>
   )
 }
 

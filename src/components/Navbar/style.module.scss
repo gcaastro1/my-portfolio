@@ -1,185 +1,224 @@
 @use 'abstracts' as *;
-@import '../../scss/theme';
 
 .navbar {
-  width: 100%;
   position: fixed;
-  background-color: $color-gray-100;
-
-  z-index: 999;
+  z-index: 1000;
+  top: 0;
+  width: 100%;
+  padding: 1.4rem 1.6rem;
+  pointer-events: none;
 
   &__content {
-    width: 1200px;
-    max-width: 100%;
-    margin: 0 auto;
-    padding: 2rem 1.5rem;
-
     display: flex;
+    width: min(100%, 1240px);
+    min-height: 6.4rem;
+    margin-inline: auto;
+    padding: 0.8rem 1rem 0.8rem 1.4rem;
     align-items: center;
     justify-content: space-between;
-    gap: 20px;
+    gap: 2rem;
+    border: 1px solid var(--line);
+    border-radius: 1.8rem;
+    background: color-mix(in srgb, var(--bg-elevated) 78%, transparent);
+    box-shadow: 0 1.6rem 5rem var(--shadow);
+    backdrop-filter: blur(18px);
+    pointer-events: auto;
 
     @include breakpoint(md) {
-      padding: 2rem 3rem;
+      padding-inline: 1.8rem 1.2rem;
     }
-
-    transition: 0.3s ease all;
   }
 }
-
-// Avatar
 
 .logo {
-  display: flex;
-  gap: 20px;
+  position: relative;
+  z-index: 1002;
+  display: inline-flex;
   align-items: center;
-  min-width: 210px;
+  gap: 1rem;
 
-  p {
-    font-size: 16px;
-    font-weight: 600;
+  &__mark {
+    display: grid;
+    width: 3.8rem;
+    height: 3.8rem;
+    color: #07110e;
+    background: var(--accent);
+    border-radius: 1rem;
+    place-items: center;
+    font-family: 'Courier New', monospace;
+    font-size: 1.4rem;
+    font-weight: 800;
+    transform: rotate(-4deg);
+    transition: transform 180ms ease;
   }
 
-  &__avatar {
-    width: 46px;
-    height: 46px;
-    border-radius: 100%;
+  &__text {
+    display: none;
+    color: var(--text);
+    font-size: 1.35rem;
+    line-height: 1.05;
 
-    img {
-      width: 46px;
-      height: 46px;
-
-      object-fit: cover;
-      border-radius: 100%;
+    strong {
+      display: block;
+      color: var(--text-muted);
+      font-weight: 600;
     }
+
+    @include breakpoint(sm) {
+      display: block;
+    }
+  }
+
+  &:hover .logo__mark {
+    transform: rotate(4deg) scale(1.04);
   }
 }
 
-// Navbar Buttons
-
-.buttons {
-  top: 0;
-  right: 100%;
-  bottom: 0;
-  width: 100%;
-  height: 100vh;
-  position: fixed;
-
+.navigation {
   display: flex;
-  flex-direction: column;
-  gap: 20px;
-
-  justify-content: center;
   align-items: center;
-  text-align: center;
+  gap: 1.4rem;
 
-  transform: translate(0);
-  transition: 0.3s ease transform;
-
-  @include breakpoint(lg) {
-    transform: none;
-    flex-direction: row;
-
-    justify-content: space-between;
-    background: transparent;
-    width: 700px;
-    max-width: 100%;
-    height: 100%;
-    position: static;
-  }
-
-  &__link {
+  &__menu {
+    position: fixed;
+    z-index: 1001;
+    top: 0;
+    right: 0;
     display: flex;
+    width: min(86vw, 38rem);
+    height: 100dvh;
+    padding: 12rem 3rem 4rem;
     flex-direction: column;
+    gap: 1rem;
+    border-left: 1px solid var(--line);
+    background: var(--bg-elevated);
+    box-shadow: -2rem 0 6rem var(--shadow);
+    transform: translateX(105%);
+    transition: transform 300ms cubic-bezier(0.22, 1, 0.36, 1);
 
-    @include breakpoint(lg) {
-      transform: none;
-      flex-direction: row;
-      background: transparent;
-      width: auto;
-      height: 100%;
-      position: static;
-    }
+    a {
+      display: flex;
+      padding: 1.4rem 1.6rem;
+      align-items: center;
+      gap: 1.2rem;
+      color: var(--text);
+      border-radius: 1rem;
+      font-size: 2.2rem;
+      font-weight: 700;
+      transition: color 180ms ease, background-color 180ms ease;
 
-    gap: 20px;
-
-    &__default {
-      position: relative;
-      background-color: transparent;
-
-      border-radius: 8px;
-      font-size: 14px;
-
-      padding: 10px 20px;
+      span {
+        color: var(--accent);
+        font-family: 'Courier New', monospace;
+        font-size: 1rem;
+        font-weight: 700;
+      }
 
       &:hover {
-        text-decoration: underline;
+        color: var(--accent);
+        background: var(--surface-soft);
       }
+    }
 
-      &__active {
-        position: absolute;
-        inset: 0;
-        background-color: $color-gray-500;
-        border-radius: 8px;
+    @include breakpoint(lg) {
+      position: static;
+      width: auto;
+      height: auto;
+      padding: 0;
+      flex-direction: row;
+      gap: 0.2rem;
+      border: 0;
+      background: transparent;
+      box-shadow: none;
+      transform: none;
 
-        padding: 10px 20px;
-        z-index: 1;
+      a {
+        padding: 1rem 1.2rem;
+        font-size: 1.3rem;
+        font-weight: 600;
+
+        span {
+          display: none;
+        }
       }
     }
   }
 
-  &.isMenu {
-    transform: translate(100%);
+  &__menuOpen {
+    transform: translateX(0);
+  }
+
+  &__backdrop {
+    position: fixed;
+    z-index: 1000;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.62);
+    backdrop-filter: blur(4px);
+
+    @include breakpoint(lg) {
+      display: none;
+    }
+  }
+
+  &__actions {
+    position: relative;
+    z-index: 1002;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
   }
 }
 
-// Toggle Nav
+.language {
+  display: none;
+  padding: 0.8rem;
+  color: var(--text-muted);
+  font-family: 'Courier New', monospace;
+  font-size: 1.1rem;
+  font-weight: 700;
 
-.toggle {
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  font-size: 2rem;
-  transition: 0.3s ease all;
-  position: relative;
-
-  &:hover {
-    color: $color-gray-400;
-  }
-
-  @include breakpoint(lg) {
-    display: none;
+  @include breakpoint(sm) {
+    display: inline-flex;
   }
 }
-
-// Handle Theme
 
 .switch {
-  width: 45px;
-  height: 25px;
-  background-color: $color-gray-500;
   display: flex;
+  width: 4.6rem;
+  height: 2.8rem;
+  padding: 0.3rem;
+  align-items: center;
   justify-content: flex-start;
-  border-radius: 50px;
-  padding: 2px;
-  cursor: pointer;
+  color: #07110e;
+  background: var(--surface-strong);
+  border: 1px solid var(--line);
+  border-radius: 999px;
 
   &[data-theme='dark'] {
     justify-content: flex-end;
-    background-color: $color-brand-100;
-
-    & div > svg {
-      color: $color-brand-100;
-    }
   }
 
   &__handle {
-    width: 20px;
-    height: 20px;
-    background-color: white;
-    border-radius: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    display: grid;
+    width: 2rem;
+    height: 2rem;
+    background: var(--accent);
+    border-radius: 50%;
+    place-items: center;
+  }
+}
+
+.toggle {
+  display: grid;
+  width: 4.2rem;
+  height: 4.2rem;
+  color: var(--text);
+  background: transparent;
+  border: 1px solid var(--line);
+  border-radius: 1rem;
+  place-items: center;
+
+  @include breakpoint(lg) {
+    display: none;
   }
 }
