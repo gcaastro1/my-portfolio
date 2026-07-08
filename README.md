@@ -1,9 +1,10 @@
 # Gustavo Lima — Interactive Portfolio
 
 A modern, responsive portfolio for Gustavo Lima, a Front-End Developer focused
-on React.js, Next.js and TypeScript. The experience combines strong typography,
-subtle motion and code-inspired UI to present professional experience, technical
-skills and selected projects to recruiters and product teams.
+on React.js, Next.js, and TypeScript. The experience features a minimalist solid 
+design, strong typography, "Dev-First" interactivity (like a Command Palette), 
+and code-inspired UI to present professional experience, technical skills, and 
+selected projects.
 
 ## Preview
 
@@ -24,6 +25,10 @@ skills and selected projects to recruiters and product teams.
 
 ## Features
 
+- **Command Palette:** Quick navigation and theme/language switching via `Cmd/Ctrl + K`.
+- **Custom Cursor:** Magnetic hover interactions replacing the native OS pointer.
+- **Native Smooth Scrolling:** Fluid section navigation with active sliding indicators.
+- **Internationalization (i18n):** Complete English and Portuguese localization.
 - Interactive hero with an animated developer terminal
 - Professional About section with visual focus cards
 - Responsive experience timeline
@@ -65,7 +70,9 @@ src/
 ├── app/                 # Next.js App Router entry points
 ├── components/
 │   ├── About/
+│   ├── CommandPalette/
 │   ├── Contacts/
+│   ├── CustomCursor/
 │   ├── Experience/
 │   ├── Footer/
 │   ├── Header/
@@ -73,7 +80,7 @@ src/
 │   ├── Projects/
 │   ├── SectionHeading/
 │   └── Stack/
-├── contexts/            # Light/dark theme state
+├── contexts/            # Light/dark theme & language state
 ├── scss/                # Global tokens and reset
 └── utils/               # Projects, experience, stack and contact data
 ```
@@ -91,9 +98,9 @@ Future projects can be prepared with `visible: false` and published when ready.
 
 ## Next improvements
 
-- Add complete English/Portuguese localization
 - Replace DOCX résumés with polished PDF versions
 - Publish FinanceFlow, Stockly ERP and HelpDesk Pro case studies
+- Add an integrated Blog / Articles section
 - Add automated accessibility and end-to-end tests
 - Add a social sharing image for Open Graph
 

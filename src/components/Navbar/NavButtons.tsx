@@ -48,20 +48,22 @@ const NavButtons = () => {
           }
         })
       },
-      { threshold: 0.5 }
+      // rootMargin tracking the middle 20% of the viewport ensures tall sections still trigger
+      { rootMargin: '-40% 0px -40% 0px' }
     )
+
+    const sectionIds = ['home', 'about', 'experience', 'projects', 'stack', 'contact']
 
     // Wait a tick for DOM to be ready just in case
     setTimeout(() => {
-      navItems.forEach((item) => {
-        const id = item.href.replace('#', '')
+      sectionIds.forEach((id) => {
         const el = document.getElementById(id)
         if (el) observer.observe(el)
       })
     }, 100)
 
     return () => observer.disconnect()
-  }, [language]) // re-run if language changes (DOM updates)
+  }, []) // Empty deps so it only runs once on mount
 
   const closeMenu = () => setIsOpen(false)
 
@@ -72,6 +74,7 @@ const NavButtons = () => {
       if (target) {
         target.scrollIntoView({ behavior: 'smooth' })
         window.history.pushState(null, '', href)
+        setActiveSection(href) // Force update state on click
       }
       closeMenu()
     } else {
