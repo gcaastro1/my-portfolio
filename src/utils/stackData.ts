@@ -1,12 +1,14 @@
+import type { LocalizedText } from './i18n'
+
 export interface StackCategory {
-  title: string
+  title: LocalizedText
   code: string
-  technologies: string[]
+  technologies: Array<string | LocalizedText>
 }
 
 const stackData: StackCategory[] = [
   {
-    title: 'Frontend',
+    title: { en: 'Frontend', pt: 'Frontend' },
     code: 'frontend.ts',
     technologies: [
       'React.js',
@@ -19,7 +21,7 @@ const stackData: StackCategory[] = [
     ],
   },
   {
-    title: 'UI & Styling',
+    title: { en: 'UI & Styling', pt: 'UI e Estilização' },
     code: 'interface.fig',
     technologies: [
       'Tailwind CSS',
@@ -29,17 +31,21 @@ const stackData: StackCategory[] = [
     ],
   },
   {
-    title: 'Backend & Data',
+    title: { en: 'Backend & Data', pt: 'Backend e Dados' },
     code: 'services.sql',
     technologies: ['SQL', 'Firebase', 'Node.js', 'Docker'],
   },
   {
-    title: 'Legacy & Business',
+    title: { en: 'Legacy & Business', pt: 'Legado e Negócios' },
     code: 'business.pas',
-    technologies: ['Delphi/VCL', 'ERP Systems', 'Business Rules'],
+    technologies: [
+      'Delphi/VCL',
+      { en: 'ERP Systems', pt: 'Sistemas ERP' },
+      { en: 'Business Rules', pt: 'Regras de Negócio' },
+    ],
   },
   {
-    title: 'Tools & Delivery',
+    title: { en: 'Tools & Delivery', pt: 'Ferramentas e Entrega' },
     code: 'workflow.yml',
     technologies: ['Git', 'GitHub', 'Vercel', 'Scrum', 'Kanban'],
   },

@@ -4,10 +4,14 @@
   font-size: 62.5%;
 }
 
-* {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  scrollbar-width: thin;
+  scrollbar-color: var(--line) var(--bg);
 }
 
 html {
@@ -65,19 +69,19 @@ svg {
 
 .dark,
 .light {
-  --bg: #070a0f;
-  --bg-elevated: #0e131d;
-  --surface: rgba(17, 24, 36, 0.82);
-  --surface-strong: #141b28;
-  --surface-soft: rgba(255, 255, 255, 0.045);
-  --text: #f4f7fb;
-  --text-muted: #9aa6b7;
-  --line: rgba(255, 255, 255, 0.11);
-  --line-strong: rgba(142, 246, 210, 0.38);
-  --accent: #8ef6d2;
-  --accent-strong: #4fe0b3;
-  --accent-secondary: #a799ff;
-  --shadow: rgba(0, 0, 0, 0.32);
+  --bg: #0a0a0a;
+  --bg-elevated: #111111;
+  --surface: #111111;
+  --surface-strong: #1a1a1a;
+  --surface-soft: rgba(255, 255, 255, 0.05);
+  --text: #ededed;
+  --text-muted: #888888;
+  --line: #333333;
+  --line-strong: #444444;
+  --accent: #61dafb;
+  --accent-strong: #45b3ce;
+  --accent-secondary: #3178c6;
+  --shadow: rgba(0, 0, 0, 0.5);
   min-height: 100vh;
   color: var(--text);
   background: var(--bg);
@@ -86,19 +90,19 @@ svg {
 }
 
 .light {
-  --bg: #f4f5f7;
-  --bg-elevated: #ffffff;
-  --surface: rgba(255, 255, 255, 0.88);
-  --surface-strong: #ffffff;
-  --surface-soft: rgba(13, 21, 32, 0.045);
-  --text: #111722;
-  --text-muted: #5c6879;
-  --line: rgba(17, 23, 34, 0.12);
-  --line-strong: rgba(16, 145, 113, 0.35);
-  --accent: #087f65;
-  --accent-strong: #056c56;
-  --accent-secondary: #6554d9;
-  --shadow: rgba(30, 42, 60, 0.12);
+  --bg: #ffffff;
+  --bg-elevated: #f5f5f5;
+  --surface: #f5f5f5;
+  --surface-strong: #eeeeee;
+  --surface-soft: rgba(0, 0, 0, 0.04);
+  --text: #111111;
+  --text-muted: #666666;
+  --line: #eaeaea;
+  --line-strong: #cccccc;
+  --accent: #3178c6;
+  --accent-strong: #235a97;
+  --accent-secondary: #61dafb;
+  --shadow: rgba(0, 0, 0, 0.05);
   color-scheme: light;
 }
 
@@ -106,11 +110,7 @@ svg {
   position: relative;
   isolation: isolate;
   overflow: hidden;
-  background:
-    linear-gradient(var(--surface-soft) 1px, transparent 1px),
-    linear-gradient(90deg, var(--surface-soft) 1px, transparent 1px),
-    var(--bg);
-  background-size: 64px 64px;
+  background: var(--bg);
 }
 
 .container {
@@ -164,4 +164,28 @@ svg {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
+}
+
+html.hasCustomCursor,
+html.hasCustomCursor * {
+  cursor: none !important;
+}
+
+/* Custom discreet scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--line);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--line-strong);
 }

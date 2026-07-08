@@ -4,6 +4,8 @@ import { MoonStars, Sun } from '@phosphor-icons/react'
 import styles from './style.module.scss'
 import { useContext } from 'react'
 import { ThemeContext } from '@/contexts/ThemeContext'
+import { LanguageContext } from '@/contexts/LanguageContext'
+import { translations } from '@/utils/i18n'
 import { motion } from 'framer-motion'
 
 const spring = {
@@ -14,6 +16,8 @@ const spring = {
 
 const ThemeSwitch = () => {
   const { theme, setTheme } = useContext(ThemeContext)
+  const { language } = useContext(LanguageContext)
+  const copy = translations[language].nav
   const Icon = theme === 'light' ? MoonStars : Sun
 
   const handleSwitch = () => {
@@ -27,7 +31,7 @@ const ThemeSwitch = () => {
       className={styles.switch}
       data-theme={theme}
       onClick={handleSwitch}
-      aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} theme`}
+      aria-label={theme === 'light' ? copy.switchToDark : copy.switchToLight}
     >
       <motion.span className={styles.switch__handle} layout transition={spring}>
         <Icon size={14} weight="bold" />
