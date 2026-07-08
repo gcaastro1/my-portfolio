@@ -1,9 +1,7 @@
 import type { Metadata } from 'next'
 import '../scss/main.scss'
-import { Inter } from 'next/font/google'
 import { ThemeProvider } from '@/contexts/ThemeContext'
-
-const inter = Inter({ subsets: ['latin'] })
+import { LanguageProvider } from '@/contexts/LanguageContext'
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://gustavolima.vercel.app'),
@@ -34,8 +32,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
-        <ThemeProvider>{children}</ThemeProvider>
+      <body>
+        <LanguageProvider>
+          <ThemeProvider>{children}</ThemeProvider>
+        </LanguageProvider>
       </body>
     </html>
   )

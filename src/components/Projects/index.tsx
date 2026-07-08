@@ -1,18 +1,25 @@
+'use client'
+
 import SectionHeading from '@/components/SectionHeading'
+import { LanguageContext } from '@/contexts/LanguageContext'
 import projectsData from '@/utils/projectsData'
+import { translations } from '@/utils/i18n'
+import { useContext } from 'react'
 import ProjectCard from './Card'
 import styles from './style.module.scss'
 
 const Projects = () => {
+  const { language } = useContext(LanguageContext)
+  const copy = translations[language].projects
   const visibleProjects = projectsData.filter((project) => project.visible)
 
   return (
     <section className={`${styles.projects} section`} id="projects">
       <div className="container">
         <SectionHeading
-          eyebrow="03 / Selected work"
-          title="Projects with a point of view."
-          description="A curated selection of interfaces where engineering, usability and business context meet."
+          eyebrow={copy.eyebrow}
+          title={copy.title}
+          description={copy.description}
         />
 
         <div className={styles.projects__list}>
@@ -22,7 +29,7 @@ const Projects = () => {
         </div>
 
         <p className={styles.projects__note}>
-          Next in the lab: FinanceFlow, Stockly ERP and HelpDesk Pro.
+          {copy.nextLab}
         </p>
       </div>
     </section>

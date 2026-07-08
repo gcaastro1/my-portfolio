@@ -8,7 +8,10 @@ import {
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 import Link from 'next/link'
+import { useContext } from 'react'
 
+import { LanguageContext } from '@/contexts/LanguageContext'
+import { translations } from '@/utils/i18n'
 import mypic from '../../assets/mypic.jpeg'
 import styles from './style.module.scss'
 
@@ -21,15 +24,26 @@ const containerAnimation = {
 }
 
 const itemAnimation = {
-  hidden: { opacity: 0, y: 24 },
+  hidden: { opacity: 0, y: 10 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.65, ease: [0.22, 1, 0.36, 1] },
+    transition: { duration: 0.5, ease: 'easeOut' },
   },
 }
 
 const Header = () => {
+  const { language } = useContext(LanguageContext)
+  const copy = translations[language].hero
+  const currentCv =
+    language === 'en'
+      ? '/Gustavo_Lima_CV_EN.docx'
+      : '/Gustavo_Lima_CV_PT.docx'
+  const alternativeCv =
+    language === 'en'
+      ? '/Gustavo_Lima_CV_PT.docx'
+      : '/Gustavo_Lima_CV_EN.docx'
+
   return (
     <section className={styles.hero} id="home">
       <div className={styles.hero__glow} aria-hidden="true" />
@@ -42,7 +56,7 @@ const Header = () => {
         >
           <motion.div className={styles.hero__eyebrow} variants={itemAnimation}>
             <span />
-            Available for Front-End opportunities
+            {copy.availability}
           </motion.div>
 
           <motion.h1 className={styles.hero__title} variants={itemAnimation}>
@@ -51,7 +65,7 @@ const Header = () => {
           </motion.h1>
 
           <motion.p className={styles.hero__role} variants={itemAnimation}>
-            Front-End Developer
+            {copy.role}
           </motion.p>
 
           <motion.p className={styles.hero__stack} variants={itemAnimation}>
@@ -59,48 +73,49 @@ const Header = () => {
           </motion.p>
 
           <motion.p className={styles.hero__description} variants={itemAnimation}>
-            I build modern, responsive and business-oriented web applications
-            with strong UI/UX foundations and experience in ERP systems, SQL
-            and legacy application modernization.
+            {copy.description}
           </motion.p>
 
           <motion.div className={styles.hero__actions} variants={itemAnimation}>
             <Link className={styles.hero__primaryAction} href="#projects">
-              View Projects <ArrowDownRight size={18} weight="bold" />
+              {copy.viewProjects} <ArrowDownRight size={18} weight="bold" />
             </Link>
             <Link
               className={styles.hero__secondaryAction}
-              href="/Gustavo_Lima_CV_EN.docx"
+              href={currentCv}
               download
             >
-              Download CV <DownloadSimple size={18} weight="bold" />
+              {copy.downloadCv} <DownloadSimple size={18} weight="bold" />
             </Link>
             <Link className={styles.hero__textAction} href="#contact">
-              Contact Me <EnvelopeSimple size={17} />
+              {copy.contactMe} <EnvelopeSimple size={17} />
             </Link>
           </motion.div>
 
           <motion.p className={styles.hero__cvNote} variants={itemAnimation}>
-            Prefer Portuguese?{' '}
-            <Link href="/Gustavo_Lima_CV_PT.docx" download>
-              Download CV in PT-BR
+            {copy.cvNote}{' '}
+            <Link href={alternativeCv} download>
+              {copy.cvAlternative}
             </Link>
           </motion.p>
         </motion.div>
 
         <motion.div
           className={styles.terminal}
-          initial={{ opacity: 0, scale: 0.94, rotate: 1.5 }}
-          animate={{ opacity: 1, scale: 1, rotate: 0 }}
-          transition={{ duration: 0.8, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
+          initial={{ opacity: 0, y: 15 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.2, ease: 'easeOut' }}
         >
           <div className={styles.terminal__bar}>
             <span />
             <span />
             <span />
-            <p>developer.ts</p>
+            <p>{copy.terminalFile}</p>
           </div>
-          <div className={styles.terminal__code} aria-label="Developer profile code">
+          <div
+            className={styles.terminal__code}
+            aria-label={copy.terminalHeadline}
+          >
             <p>
               <span className={styles.keyword}>const</span>{' '}
               <span className={styles.variable}>developer</span> = {'{'}
@@ -112,7 +127,7 @@ const Header = () => {
             <p>
               &nbsp;&nbsp;role:{' '}
               <span className={styles.string}>
-                &quot;Front-End Developer&quot;
+                &quot;{copy.terminalRole}&quot;
               </span>
               ,
             </p>
@@ -125,7 +140,7 @@ const Header = () => {
             <p>
               &nbsp;&nbsp;focus:{' '}
               <span className={styles.string}>
-                &quot;Business interfaces &amp; ERP solutions&quot;
+                &quot;{copy.terminalFocus}&quot;
               </span>
             </p>
             <p>{'}'}</p>
@@ -145,8 +160,8 @@ const Header = () => {
               />
             </div>
             <div>
-              <strong>Building for real users</strong>
-              <span>UI craft meets business logic</span>
+              <strong>{copy.terminalHeadline}</strong>
+              <span>{copy.terminalSubtitle}</span>
             </div>
           </div>
 
@@ -162,7 +177,7 @@ const Header = () => {
       </div>
 
       <div className={styles.hero__scroll} aria-hidden="true">
-        <span>Scroll to explore</span>
+        <span>{copy.scroll}</span>
         <i />
       </div>
     </section>

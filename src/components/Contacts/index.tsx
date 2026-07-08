@@ -9,8 +9,11 @@ import {
 } from '@phosphor-icons/react'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
+import { useContext } from 'react'
 
+import { LanguageContext } from '@/contexts/LanguageContext'
 import { ContactType, contactsData } from '@/utils/contactsData'
+import { translations } from '@/utils/i18n'
 import styles from './style.module.scss'
 
 const icons = {
@@ -21,6 +24,9 @@ const icons = {
 } satisfies Record<ContactType, typeof EnvelopeSimple>
 
 const Contacts = () => {
+  const { language } = useContext(LanguageContext)
+  const copy = translations[language].contact
+
   return (
     <section className={`${styles.contact} section`} id="contact">
       <div className={`${styles.contact__container} container`}>
@@ -31,17 +37,14 @@ const Contacts = () => {
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.6 }}
         >
-          <p className={styles.contact__eyebrow}>05 / Let&apos;s talk</p>
+          <p className={styles.contact__eyebrow}>{copy.eyebrow}</p>
           <h2>
-            Have a challenge?
-            <span>Let&apos;s make it clear.</span>
+            {copy.title}
+            <span>{copy.titleAccent}</span>
           </h2>
-          <p>
-            Interested in working together or discussing an opportunity? Feel
-            free to contact me through LinkedIn, email, GitHub or WhatsApp.
-          </p>
+          <p>{copy.description}</p>
           <Link className={styles.contact__emailCta} href="mailto:gcaastro1@gmail.com">
-            Start a conversation
+            {copy.cta}
             <ArrowUpRight size={20} weight="bold" />
           </Link>
         </motion.div>
@@ -64,14 +67,14 @@ const Contacts = () => {
                   href={contact.link}
                   target={isExternal ? '_blank' : undefined}
                   rel={isExternal ? 'noreferrer' : undefined}
-                  aria-label={`Contact Gustavo via ${contact.title}`}
+                  aria-label={`${copy.contactVia} ${contact.title[language]}`}
                 >
                   <span className={styles.contact__icon}>
                     <Icon size={24} weight="duotone" />
                   </span>
                   <span className={styles.contact__linkCopy}>
-                    <strong>{contact.title}</strong>
-                    <small>{contact.subtitle}</small>
+                    <strong>{contact.title[language]}</strong>
+                    <small>{contact.subtitle[language]}</small>
                   </span>
                   <ArrowUpRight
                     className={styles.contact__arrow}

@@ -1,8 +1,10 @@
+import type { LocalizedText } from './i18n'
+
 export interface ProjectData {
   id: number
   title: string
-  label: string
-  description: string
+  label: LocalizedText
+  description: LocalizedText
   stack: string[]
   repository?: string
   deploy?: string
@@ -14,9 +16,11 @@ const projectsData: ProjectData[] = [
   {
     id: 1,
     title: 'Portfolio Website',
-    label: 'Featured / 2026',
-    description:
-      'Personal portfolio redesigned with Next.js, TypeScript, Sass and Framer Motion to present my experience, technical skills and selected front-end projects.',
+    label: { en: 'Featured / 2026', pt: 'Destaque / 2026' },
+    description: {
+      en: 'Personal portfolio redesigned with Next.js, TypeScript, Sass and Framer Motion to present my experience, technical skills and selected front-end projects.',
+      pt: 'Portfólio pessoal redesenhado com Next.js, TypeScript, Sass e Framer Motion para apresentar minha experiência, habilidades técnicas e projetos front-end selecionados.',
+    },
     stack: ['Next.js', 'React', 'TypeScript', 'Sass', 'Framer Motion'],
     repository: 'https://github.com/gcaastro1/my-portfolio',
     deploy: 'https://gustavolima.vercel.app',
@@ -26,8 +30,11 @@ const projectsData: ProjectData[] = [
   {
     id: 2,
     title: 'FinanceFlow',
-    label: 'Cash Flow Dashboard',
-    description: 'Financial overview and cash flow management experience.',
+    label: { en: 'Cash Flow Dashboard', pt: 'Dashboard de Fluxo de Caixa' },
+    description: {
+      en: 'Financial overview and cash flow management experience.',
+      pt: 'Experiência para visão financeira e gestão do fluxo de caixa.',
+    },
     stack: ['Next.js', 'TypeScript', 'Charts'],
     status: 'coming-soon',
     visible: false,
@@ -35,8 +42,14 @@ const projectsData: ProjectData[] = [
   {
     id: 3,
     title: 'Stockly ERP',
-    label: 'Products, Inventory and Orders',
-    description: 'ERP interface focused on inventory and order workflows.',
+    label: {
+      en: 'Products, Inventory and Orders',
+      pt: 'Produtos, Estoque e Pedidos',
+    },
+    description: {
+      en: 'ERP interface focused on inventory and order workflows.',
+      pt: 'Interface ERP focada nos fluxos de estoque e pedidos.',
+    },
     stack: ['React', 'TypeScript', 'SQL'],
     status: 'coming-soon',
     visible: false,
@@ -44,8 +57,11 @@ const projectsData: ProjectData[] = [
   {
     id: 4,
     title: 'HelpDesk Pro',
-    label: 'Support Ticket System',
-    description: 'Support operation dashboard for tickets and service levels.',
+    label: { en: 'Support Ticket System', pt: 'Sistema de Chamados' },
+    description: {
+      en: 'Support operation dashboard for tickets and service levels.',
+      pt: 'Dashboard de suporte para chamados e níveis de serviço.',
+    },
     stack: ['Next.js', 'Firebase', 'TypeScript'],
     status: 'coming-soon',
     visible: false,

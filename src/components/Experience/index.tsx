@@ -2,19 +2,25 @@
 
 import { ArrowUpRight } from '@phosphor-icons/react'
 import { motion } from 'framer-motion'
+import { useContext } from 'react'
 
 import SectionHeading from '@/components/SectionHeading'
+import { LanguageContext } from '@/contexts/LanguageContext'
 import experienceData from '@/utils/experienceData'
+import { translations } from '@/utils/i18n'
 import styles from './style.module.scss'
 
 const Experience = () => {
+  const { language } = useContext(LanguageContext)
+  const copy = translations[language].experience
+
   return (
     <section className={`${styles.experience} section`} id="experience">
       <div className="container">
         <SectionHeading
-          eyebrow="02 / Experience"
-          title="Built in the real world."
-          description="From product design to teaching and business-critical systems, each role sharpened how I solve problems through interfaces."
+          eyebrow={copy.eyebrow}
+          title={copy.title}
+          description={copy.description}
           align="right"
         />
 
@@ -37,12 +43,12 @@ const Experience = () => {
                     <p className={styles.experience__company}>
                       {experience.company}
                     </p>
-                    <h3>{experience.role}</h3>
+                    <h3>{experience.role[language]}</h3>
                   </div>
-                  <time>{experience.period}</time>
+                  <time>{experience.period[language]}</time>
                 </div>
                 <ul>
-                  {experience.highlights.map((highlight) => (
+                  {experience.highlights[language].map((highlight) => (
                     <li key={highlight}>
                       <ArrowUpRight size={14} weight="bold" />
                       <span>{highlight}</span>

@@ -3,7 +3,10 @@
 import { ArrowUpRight, GithubLogo } from '@phosphor-icons/react'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
+import { useContext } from 'react'
 
+import { LanguageContext } from '@/contexts/LanguageContext'
+import { translations } from '@/utils/i18n'
 import { ProjectData } from '@/utils/projectsData'
 import ProjectPreview from './ProjectPreview'
 import styles from './style.module.scss'
@@ -13,6 +16,9 @@ interface ProjectCardProps {
 }
 
 const ProjectCard = ({ project }: ProjectCardProps) => {
+  const { language } = useContext(LanguageContext)
+  const copy = translations[language].projects
+
   return (
     <motion.article
       className={styles.project}
@@ -27,16 +33,17 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
 
       <div className={styles.project__content}>
         <div className={styles.project__meta}>
-          <span>{project.label}</span>
+          <span>{project.label[language]}</span>
           <span className={styles.project__status}>
-            <i /> {project.status === 'live' ? 'Live' : 'Coming soon'}
+            <i />{' '}
+            {project.status === 'live' ? copy.live : copy.comingSoon}
           </span>
         </div>
 
         <h3>{project.title}</h3>
-        <p>{project.description}</p>
+        <p>{project.description[language]}</p>
 
-        <ul className={styles.project__stack} aria-label="Technologies used">
+        <ul className={styles.project__stack} aria-label={copy.technologies}>
           {project.stack.map((technology) => (
             <li key={technology}>{technology}</li>
           ))}
@@ -46,12 +53,12 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
           {project.repository && (
             <Link href={project.repository} target="_blank" rel="noreferrer">
               <GithubLogo size={18} weight="bold" />
-              Repository
+              {copy.repository}
             </Link>
           )}
           {project.deploy && (
             <Link href={project.deploy} target="_blank" rel="noreferrer">
-              Live Demo
+              {copy.liveDemo}
               <ArrowUpRight size={18} weight="bold" />
             </Link>
           )}
