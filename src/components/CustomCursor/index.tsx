@@ -55,7 +55,7 @@ const CustomCursor = () => {
           x: mousePosition.x - 16,
           y: mousePosition.y - 16,
           scale: isHovering ? 1.5 : 1,
-          backgroundColor: isHovering ? 'rgba(97, 218, 251, 0.15)' : 'transparent',
+          backgroundColor: isHovering ? 'rgba(97, 218, 251, 0.15)' : 'rgba(97, 218, 251, 0)',
           borderColor: isHovering ? 'rgba(97, 218, 251, 0.4)' : 'var(--accent)',
         }}
         transition={{ type: 'tween', ease: 'easeOut', duration: 0.15 }}
