@@ -1,9 +1,55 @@
 @use 'abstracts' as *;
 
 .projects {
-  &__list {
-    display: grid;
-    gap: 2rem;
+  .carouselWrapper {
+    position: relative;
+    width: 100%;
+  }
+
+  .embla {
+    overflow: hidden;
+  }
+
+  .embla__container {
+    display: flex;
+  }
+
+  .embla__slide {
+    flex: 0 0 100%;
+    min-width: 0;
+    padding-right: 2rem; // replaces gap
+  }
+
+  .controls {
+    display: flex;
+    justify-content: center;
+    gap: 1.2rem;
+    margin-top: 2rem;
+
+    &__button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 4.8rem;
+      height: 4.8rem;
+      border-radius: 50%;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      color: var(--text);
+      cursor: pointer;
+      transition: all 200ms ease;
+
+      &:hover:not(:disabled) {
+        border-color: var(--line-strong);
+        color: var(--accent);
+        transform: scale(1.05);
+      }
+
+      &:disabled {
+        opacity: 0.3;
+        cursor: not-allowed;
+      }
+    }
   }
 
   &__note {
@@ -17,6 +63,7 @@
 
 .project {
   display: grid;
+  height: 100%; // ensure cards stretch to same height if needed
   border: 1px solid var(--line);
   border-radius: 2rem;
   background: var(--surface);
@@ -191,7 +238,7 @@
     height: calc(100% - 3.8rem);
     display: flex;
     justify-content: center;
-    align-items: flex-start;
+    align-items: center;
     overflow: hidden;
   }
 
@@ -199,7 +246,7 @@
     width: 100%;
     height: auto;
     object-fit: cover;
-    object-position: top;
+    object-position: center;
     transition: transform 300ms ease;
 
     .project:hover & {

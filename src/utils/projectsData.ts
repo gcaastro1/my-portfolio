@@ -8,6 +8,7 @@ export interface ProjectData {
   stack: string[]
   repository?: string
   deploy?: string
+  image?: string
   status: 'live' | 'coming-soon'
   visible: boolean
 }
@@ -63,6 +64,33 @@ const projectsData: ProjectData[] = [
       pt: 'Dashboard de suporte para chamados e níveis de serviço.',
     },
     stack: ['Next.js', 'Firebase', 'TypeScript'],
+    status: 'coming-soon',
+    visible: false,
+  },
+  {
+    id: 5,
+    title: 'Dropmailer',
+    label: { en: 'Temporary Email Service', pt: 'Serviço de Email Temporário' },
+    description: {
+      en: 'A temporary email service generator to protect your real inbox from spam.',
+      pt: 'Um gerador de serviço de email temporário para proteger sua caixa de entrada principal contra spam.',
+    },
+    stack: ['Angular v18', 'TypeScript', 'TailwindCSS', 'Apollo GraphQL', 'FontAwesome', 'Dropmail.me'],
+    repository: 'https://github.com/gcaastro1/tempmail-gen',
+    deploy: 'https://dropmailer-gen.vercel.app/',
+    image: '/dropmailer.png',
+    status: 'live',
+    visible: true,
+  },
+  {
+    id: 6,
+    title: 'Study Hub',
+    label: { en: 'Learning Platform', pt: 'Plataforma de Estudos' },
+    description: {
+      en: 'A comprehensive platform to manage studies, courses and learning progress.',
+      pt: 'Uma plataforma abrangente para gerenciar estudos, cursos e progresso de aprendizado.',
+    },
+    stack: ['Next.js', 'React', 'TypeScript'],
     status: 'coming-soon',
     visible: false,
   },

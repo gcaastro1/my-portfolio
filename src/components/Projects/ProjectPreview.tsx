@@ -7,7 +7,11 @@ import { LanguageContext } from '@/contexts/LanguageContext'
 import { translations } from '@/utils/i18n'
 import styles from './style.module.scss'
 
-const ProjectPreview = () => {
+interface ProjectPreviewProps {
+  image?: string
+}
+
+const ProjectPreview = ({ image }: ProjectPreviewProps) => {
   const { language } = useContext(LanguageContext)
   const copy = translations[language].projects
 
@@ -21,7 +25,7 @@ const ProjectPreview = () => {
       </div>
       <div className={styles.preview__imageContainer}>
         <Image 
-          src="/portfolio.png" 
+          src={image || "/portfolio.png"} 
           alt="Portfolio preview" 
           width={800}
           height={600}

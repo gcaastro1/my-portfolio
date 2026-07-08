@@ -28,7 +28,7 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
       transition={{ duration: 0.65 }}
     >
       <div className={styles.project__visual}>
-        <ProjectPreview />
+        <ProjectPreview image={project.image} />
       </div>
 
       <div className={styles.project__content}>
