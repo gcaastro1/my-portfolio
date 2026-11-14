@@ -1,21 +1,22 @@
 import About from '@/components/About'
+import CommandPalette from '@/components/CommandPalette'
 import Contacts from '@/components/Contacts'
 import Experience from '@/components/Experience'
-import Footer from '@/components/Footer'
 import Header from '@/components/Header'
-import Navbar from '@/components/Navbar'
 import Projects from '@/components/Projects'
+import SideRail from '@/components/SideRail'
 import SkipLink from '@/components/SkipLink'
 import Stack from '@/components/Stack'
-import CustomCursor from '@/components/CustomCursor'
-import CommandPalette from '@/components/CommandPalette'
+import StatusBar from '@/components/StatusBar'
+import TitleBar from '@/components/TitleBar'
+
 export default function Home() {
   return (
     <>
-      <CustomCursor />
-      <CommandPalette />
       <SkipLink />
-      <Navbar />
+      <CommandPalette />
+      <TitleBar />
+      <SideRail />
       <main className="site-shell" id="main-content">
         <Header />
         <About />
@@ -24,7 +25,7 @@ export default function Home() {
         <Stack />
         <Contacts />
       </main>
-      <Footer />
+      <StatusBar />
     </>
   )
 }
