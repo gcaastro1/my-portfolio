@@ -28,7 +28,11 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
       transition={{ duration: 0.65 }}
     >
       <div className={styles.project__visual}>
-        <ProjectPreview image={project.image} />
+        <ProjectPreview
+          image={project.image}
+          title={project.title}
+          host={project.deploy ? new URL(project.deploy).host : undefined}
+        />
       </div>
 
       <div className={styles.project__content}>
@@ -36,7 +40,7 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
           <span>{project.label[language]}</span>
           <span className={styles.project__status}>
             <i />{' '}
-            {project.status === 'live' ? copy.live : copy.comingSoon}
+            {project.status === 'live' ? copy.live : copy.completed}
           </span>
         </div>
 

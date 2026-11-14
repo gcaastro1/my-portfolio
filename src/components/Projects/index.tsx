@@ -77,10 +77,6 @@ const Projects = () => {
             </div>
           </div>
         </EditorPanel>
-
-        <p className={styles.projects__note}>
-          {copy.nextLab}
-        </p>
       </div>
     </section>
   )

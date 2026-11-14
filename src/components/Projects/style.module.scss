@@ -51,14 +51,6 @@
       }
     }
   }
-
-  &__note {
-    margin-top: 2.2rem;
-    color: var(--text-muted);
-    font-family: $mono-font-stack;
-    font-size: 1.1rem;
-    text-align: right;
-  }
 }
 
 .project {
@@ -240,6 +232,29 @@
     justify-content: center;
     align-items: center;
     overflow: hidden;
+  }
+
+  &__placeholder {
+    display: grid;
+    height: calc(100% - 3.8rem);
+    min-height: 22rem;
+    padding: 2rem;
+    place-items: center;
+    background: radial-gradient(
+      40rem 24rem at 50% 40%,
+      var(--glow-soft),
+      transparent 70%
+    );
+    font-family: $mono-font-stack;
+    font-size: clamp(2.4rem, 4vw, 3.6rem);
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    text-align: center;
+
+    b {
+      color: var(--accent);
+      font-weight: 600;
+    }
   }
 
   &__image {

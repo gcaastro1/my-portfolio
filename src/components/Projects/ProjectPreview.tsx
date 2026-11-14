@@ -9,9 +9,11 @@ import styles from './style.module.scss'
 
 interface ProjectPreviewProps {
   image?: string
+  title: string
+  host?: string
 }
 
-const ProjectPreview = ({ image }: ProjectPreviewProps) => {
+const ProjectPreview = ({ image, title, host }: ProjectPreviewProps) => {
   const { language } = useContext(LanguageContext)
   const copy = translations[language].projects
 
@@ -21,18 +23,26 @@ const ProjectPreview = ({ image }: ProjectPreviewProps) => {
         <span />
         <span />
         <span />
-        <p>gustavolima.dev</p>
+        {host && <p>{host}</p>}
       </div>
-      <div className={styles.preview__imageContainer}>
-        <Image 
-          src={image || "/portfolio.png"} 
-          alt="Portfolio preview" 
-          width={800}
-          height={600}
-          className={styles.preview__image}
-          priority
-        />
-      </div>
+      {image ? (
+        <div className={styles.preview__imageContainer}>
+          <Image
+            src={image}
+            alt={title}
+            width={800}
+            height={600}
+            className={styles.preview__image}
+            priority
+          />
+        </div>
+      ) : (
+        <div className={styles.preview__placeholder}>
+          <span>
+            <b>{'//'}</b> {title}
+          </span>
+        </div>
+      )}
     </div>
   )
 }
