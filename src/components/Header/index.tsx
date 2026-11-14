@@ -8,6 +8,7 @@ import {
 import { motion } from 'framer-motion'
 import { useContext } from 'react'
 
+import HeroScene from '@/components/HeroScene'
 import { LanguageContext } from '@/contexts/LanguageContext'
 import { translations } from '@/utils/i18n'
 import { onAnchorClick } from '@/utils/smoothScroll'
@@ -41,6 +42,7 @@ const Header = () => {
   return (
     <section className={styles.hero} id="home">
       <div className={styles.hero__glow} aria-hidden="true" />
+      <HeroScene />
 
       <div className={`${styles.hero__container} container`}>
         <motion.div
