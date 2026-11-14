@@ -19,16 +19,16 @@ objetos 3D, trilho lateral, barra de status. É inspiração de layout, não có
 
 ## Identidade visual
 
-Tokens como variáveis CSS em `:root` (claro) e `html.dark` (escuro), consumidos pelos SCSS modules.
+Tokens como variáveis CSS em `html[data-theme='dark'|'light']`, definidos por script inline antes da hidratação (sem flash), consumidos pelos SCSS modules.
 
 | Token | Escuro | Claro |
 |---|---|---|
 | `--bg` | `#0b0b0c` | `#f6f4f1` |
 | `--surface` | `#141416` | `#ffffff` |
-| `--border` | `#26262a` | `#e2ddd6` |
+| `--line` | `#26262a` | `#e2ddd6` |
 | `--text` | `#ededed` | `#1a1a1a` |
 | `--muted` | `#8b8b93` | `#6b655d` |
-| `--accent` | `#ff7a1a` | `#d85a00` (contraste AA sobre claro) |
+| `--accent` | `#ff7a1a` | `#c2410c` (AA: 5,2:1 sobre branco) |
 
 - Fonte mono (JetBrains Mono via `next/font`) para rótulos, barras e código; Inter para texto corrido.
 - Brilho laranja difuso no fundo do hero e grão sutil; no claro, o brilho é mais suave.
@@ -36,7 +36,7 @@ Tokens como variáveis CSS em `:root` (claro) e `html.dark` (escuro), consumidos
 ## Moldura estilo IDE (global)
 
 - **Barra de título** (topo): `gustavo <lima>` centralizado; seletor PT/EN e alternador de tema à direita.
-- **Trilho lateral** (esquerda): ícones início, sobre, experiência, projetos, contato; rola até a seção e
+- **Trilho lateral** (esquerda): ícones início, sobre, experiência, projetos, tecnologias, contato; rola até a seção e
   marca a ativa (IntersectionObserver). Em telas < 768px vira barra inferior.
 - **Barra de status** (rodapé fixo): "Based in Santo André, SP · Local time HH:MM", links (LinkedIn, GitHub,
   e-mail), botão `let's-work-together` para `#contact` e atalho do `CommandPalette` (Ctrl+K).
@@ -64,8 +64,8 @@ borda fina e hover com brilho laranja. Rolagem suave com Lenis, desligada em `pr
 
 ## Acessibilidade e desempenho
 
-Mantém `SkipLink`, foco visível e contraste AA nos dois temas. Troca o `CustomCursor` por versão discreta
-ou o remove se atrapalhar (decidir na implementação, com teste manual). Three.js fica fora do bundle inicial.
+Mantém `SkipLink`, foco visível e contraste AA nos dois temas. Remove o `CustomCursor` (esconde o cursor
+nativo e a referência não usa). Three.js fica fora do bundle inicial.
 
 ## Dependências novas
 

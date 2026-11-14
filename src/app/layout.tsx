@@ -1,7 +1,13 @@
 import type { Metadata } from 'next'
+import { Inter, JetBrains_Mono } from 'next/font/google'
 import '../scss/main.scss'
 import { ThemeProvider } from '@/contexts/ThemeContext'
 import { LanguageProvider } from '@/contexts/LanguageContext'
+
+const inter = Inter({ subsets: ['latin'], variable: '--font-sans' })
+const mono = JetBrains_Mono({ subsets: ['latin'], variable: '--font-mono' })
+
+const themeScript = `try{var t=localStorage.getItem('@Theme');if(t==='light'||t==='dark')document.documentElement.dataset.theme=t}catch(e){}`
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://gustavolima.vercel.app'),
@@ -31,7 +37,15 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html
+      lang="en"
+      data-theme="dark"
+      className={`${inter.variable} ${mono.variable}`}
+      suppressHydrationWarning
+    >
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+      </head>
       <body>
         <LanguageProvider>
           <ThemeProvider>{children}</ThemeProvider>

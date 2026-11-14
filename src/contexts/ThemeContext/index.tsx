@@ -13,23 +13,34 @@ const ThemeContext = React.createContext({
 
 const ThemeProvider = ({ children }: ThemeProviderProps) => {
   const [theme, setTheme] = useState(initialThemeState.theme)
+  // Só grava depois de ler o tema salvo; senão o 'dark' inicial sobrescreve a preferência.
+  const [ready, setReady] = useState(false)
 
   useEffect(() => {
-    const savedTheme = localStorage.getItem('@Theme')
-    if (savedTheme === 'dark' || savedTheme === 'light') {
-      setTheme(savedTheme)
+    try {
+      const savedTheme = localStorage.getItem('@Theme')
+      if (savedTheme === 'dark' || savedTheme === 'light') {
+        setTheme(savedTheme)
+      }
+    } catch {
+      // storage bloqueado: segue com o tema escuro
     }
+    setReady(true)
   }, [])
 
   useEffect(() => {
-    localStorage.setItem('@Theme', theme)
-  }, [theme])
+    if (!ready) return
+    document.documentElement.dataset.theme = theme
+    try {
+      localStorage.setItem('@Theme', theme)
+    } catch {
+      // storage bloqueado: o tema só vale para esta sessão
+    }
+  }, [theme, ready])
 
   return (
     <ThemeContext.Provider value={{ theme, setTheme }}>
-      <div className={theme} data-theme={theme}>
-        {children}
-      </div>
+      {children}
     </ThemeContext.Provider>
   )
 }
