@@ -112,6 +112,7 @@ export const translations = {
       social: 'Social links',
     },
     palette: {
+      title: 'Command menu',
       placeholder: 'Type a command or search...',
       empty: 'No commands found.',
       themeDark: 'Switch to Dark Theme',
@@ -234,6 +235,7 @@ export const translations = {
       social: 'Redes e contato',
     },
     palette: {
+      title: 'Menu de comandos',
       placeholder: 'Digite um comando ou busque...',
       empty: 'Nenhum comando encontrado.',
       themeDark: 'Mudar para o tema escuro',

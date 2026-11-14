@@ -1,0 +1,16 @@
+// localStorage lança em Safari com cookies bloqueados e em iframes com sandbox.
+export function readStored(key: string): string | null {
+  try {
+    return localStorage.getItem(key)
+  } catch {
+    return null
+  }
+}
+
+export function writeStored(key: string, value: string): void {
+  try {
+    localStorage.setItem(key, value)
+  } catch {
+    // sem storage: a preferência só vale nesta sessão
+  }
+}

@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from 'react'
 
+import { readStored, writeStored } from '@/utils/storage'
 import {
   Language,
   LanguageContextProps,
@@ -18,7 +19,7 @@ const LanguageProvider = ({ children }: LanguageProviderProps) => {
   const [language, setLanguage] = useState<Language>(initialLanguage)
 
   useEffect(() => {
-    const savedLanguage = localStorage.getItem('@Language')
+    const savedLanguage = readStored('@Language')
 
     if (savedLanguage === 'en' || savedLanguage === 'pt') {
       setLanguage(savedLanguage)
@@ -26,7 +27,7 @@ const LanguageProvider = ({ children }: LanguageProviderProps) => {
   }, [])
 
   useEffect(() => {
-    localStorage.setItem('@Language', language)
+    writeStored('@Language', language)
     document.documentElement.lang = language === 'en' ? 'en' : 'pt-BR'
   }, [language])
 

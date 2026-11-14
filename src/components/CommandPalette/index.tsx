@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { ThemeContext } from '@/contexts/ThemeContext'
 import { LanguageContext } from '@/contexts/LanguageContext'
 import { OPEN_PALETTE_EVENT } from '@/utils/events'
+import { nextFocusIndex } from '@/utils/focusTrap'
 import { translations } from '@/utils/i18n'
 import { scrollToHash } from '@/utils/smoothScroll'
 import styles from './style.module.scss'
@@ -13,6 +14,8 @@ const CommandPalette = () => {
   const [isOpen, setIsOpen] = useState(false)
   const [search, setSearch] = useState('')
   const inputRef = useRef<HTMLInputElement>(null)
+  const paletteRef = useRef<HTMLDivElement>(null)
+  const previousFocus = useRef<HTMLElement | null>(null)
   
   const { theme, setTheme } = useContext(ThemeContext)
   const { language, setLanguage } = useContext(LanguageContext)
@@ -40,11 +43,29 @@ const CommandPalette = () => {
 
   useEffect(() => {
     if (isOpen && inputRef.current) {
+      previousFocus.current = document.activeElement as HTMLElement | null
       inputRef.current.focus()
     } else {
       setSearch('')
+      previousFocus.current?.focus()
+      previousFocus.current = null
     }
   }, [isOpen])
+
+  const trapTab = (event: React.KeyboardEvent<HTMLDivElement>) => {
+    if (event.key !== 'Tab' || !paletteRef.current) return
+    const focusable = Array.from(
+      paletteRef.current.querySelectorAll<HTMLElement>('input, button'),
+    )
+    const next = nextFocusIndex(
+      focusable.indexOf(document.activeElement as HTMLElement),
+      focusable.length,
+      event.shiftKey,
+    )
+    if (next < 0) return
+    event.preventDefault()
+    focusable[next].focus()
+  }
 
   const goTo = (hash: string) => {
     scrollToHash(hash)
@@ -93,10 +114,12 @@ const CommandPalette = () => {
       {isOpen && (
         <div className={styles.overlay} onClick={() => setIsOpen(false)}>
           <motion.div
+            ref={paletteRef}
             className={styles.palette}
+            onKeyDown={trapTab}
             role="dialog"
             aria-modal="true"
-            aria-label={copy.placeholder}
+            aria-label={copy.title}
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.95 }}
