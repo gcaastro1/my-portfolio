@@ -1,5 +1,6 @@
 'use client'
 
+import EditorPanel from '@/components/EditorPanel'
 import SectionHeading from '@/components/SectionHeading'
 import { LanguageContext } from '@/contexts/LanguageContext'
 import projectsData from '@/utils/projectsData'
@@ -44,36 +45,38 @@ const Projects = () => {
           description={copy.description}
         />
 
-        <div className={styles.carouselWrapper}>
-          <div className={styles.embla} ref={emblaRef}>
-            <div className={styles.embla__container}>
-              {visibleProjects.map((project) => (
-                <div className={styles.embla__slide} key={project.id}>
-                  <ProjectCard project={project} />
-                </div>
-              ))}
+        <EditorPanel filename="projects.tsx" lines={60}>
+          <div className={styles.carouselWrapper}>
+            <div className={styles.embla} ref={emblaRef}>
+              <div className={styles.embla__container}>
+                {visibleProjects.map((project) => (
+                  <div className={styles.embla__slide} key={project.id}>
+                    <ProjectCard project={project} />
+                  </div>
+                ))}
+              </div>
+            </div>
+          
+            <div className={styles.controls}>
+              <button
+                className={styles.controls__button}
+                onClick={scrollPrev}
+                disabled={prevBtnDisabled}
+                aria-label="Previous project"
+              >
+                <CaretLeft size={24} weight="bold" />
+              </button>
+              <button
+                className={styles.controls__button}
+                onClick={scrollNext}
+                disabled={nextBtnDisabled}
+                aria-label="Next project"
+              >
+                <CaretRight size={24} weight="bold" />
+              </button>
             </div>
           </div>
-          
-          <div className={styles.controls}>
-            <button
-              className={styles.controls__button}
-              onClick={scrollPrev}
-              disabled={prevBtnDisabled}
-              aria-label="Previous project"
-            >
-              <CaretLeft size={24} weight="bold" />
-            </button>
-            <button
-              className={styles.controls__button}
-              onClick={scrollNext}
-              disabled={nextBtnDisabled}
-              aria-label="Next project"
-            >
-              <CaretRight size={24} weight="bold" />
-            </button>
-          </div>
-        </div>
+        </EditorPanel>
 
         <p className={styles.projects__note}>
           {copy.nextLab}

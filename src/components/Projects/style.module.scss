@@ -55,7 +55,7 @@
   &__note {
     margin-top: 2.2rem;
     color: var(--text-muted);
-    font-family: 'Courier New', monospace;
+    font-family: $mono-font-stack;
     font-size: 1.1rem;
     text-align: right;
   }
@@ -65,7 +65,7 @@
   display: grid;
   height: 100%; // ensure cards stretch to same height if needed
   border: 1px solid var(--line);
-  border-radius: 2rem;
+  border-radius: var(--radius);
   background: var(--surface);
   box-shadow: 0 1rem 3rem var(--shadow);
   overflow: hidden;
@@ -98,9 +98,9 @@
     h3 {
       margin-top: 2.6rem;
       font-size: clamp(3.2rem, 7vw, 5.4rem);
-      font-weight: 780;
-      letter-spacing: -0.055em;
-      line-height: 0.95;
+      font-weight: 600;
+      letter-spacing: -0.04em;
+      line-height: 1;
     }
 
     > p {
@@ -117,7 +117,7 @@
     justify-content: space-between;
     gap: 1rem;
     color: var(--accent);
-    font-family: 'Courier New', monospace;
+    font-family: $mono-font-stack;
     font-size: 1rem;
     font-weight: 700;
     letter-spacing: 0.06em;
@@ -151,7 +151,7 @@
       border: 1px solid var(--line);
       border-radius: 999px;
       background: var(--surface-soft);
-      font-family: 'Courier New', monospace;
+      font-family: $mono-font-stack;
       font-size: 1rem;
     }
   }
@@ -171,7 +171,7 @@
       gap: 0.7rem;
       color: var(--text);
       border: 1px solid var(--line);
-      border-radius: 1.1rem;
+      border-radius: var(--radius);
       font-size: 1.25rem;
       font-weight: 700;
       transition: color 180ms ease, border-color 180ms ease, transform 180ms ease;
@@ -189,9 +189,9 @@
   height: 100%;
   min-height: 30rem;
   border: 1px solid var(--line);
-  border-radius: 1.6rem;
-  background: #0b1018;
-  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.32);
+  border-radius: var(--radius);
+  background: var(--bg-elevated);
+  box-shadow: 0 1rem 3rem var(--shadow);
   overflow: hidden;
   transition: transform 300ms ease;
 
@@ -205,7 +205,7 @@
     padding-inline: 1.2rem;
     align-items: center;
     gap: 0.55rem;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    border-bottom: 1px solid var(--line);
 
     > span {
       width: 0.7rem;
@@ -213,22 +213,22 @@
       border-radius: 50%;
 
       &:nth-child(1) {
-        background: #ff6b6b;
+        background: var(--line-strong);
       }
 
       &:nth-child(2) {
-        background: #ffd166;
+        background: var(--line-strong);
       }
 
       &:nth-child(3) {
-        background: #8ef6d2;
+        background: var(--accent);
       }
     }
 
     p {
       margin-left: auto;
-      color: #718096;
-      font-family: 'Courier New', monospace;
+      color: var(--text-muted);
+      font-family: $mono-font-stack;
       font-size: 0.85rem;
     }
   }

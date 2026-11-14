@@ -1,0 +1,81 @@
+@use 'abstracts' as *;
+
+.panel {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  overflow: hidden;
+
+  &__bar {
+    display: flex;
+    height: 3.6rem;
+    padding-inline: 1.4rem;
+    align-items: center;
+    gap: 1.2rem;
+    border-bottom: 1px solid var(--line);
+    background: var(--bg-elevated);
+  }
+
+  &__dots {
+    display: flex;
+    gap: 0.5rem;
+
+    i {
+      width: 0.8rem;
+      height: 0.8rem;
+      border-radius: 50%;
+      background: var(--line-strong);
+    }
+  }
+
+  &__file {
+    color: var(--syn-string);
+    font-family: $mono-font-stack;
+    font-size: 1.2rem;
+  }
+
+  &__body {
+    position: relative;
+    display: flex;
+    overflow: hidden;
+  }
+
+  &__gutter {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    display: none;
+    width: 4.8rem;
+    padding-top: 2.4rem;
+    flex-direction: column;
+    align-items: flex-end;
+    border-right: 1px solid var(--line);
+    color: var(--text-muted);
+    font-family: $mono-font-stack;
+    font-size: 1.1rem;
+    line-height: 2.4rem;
+    opacity: 0.55;
+    overflow: hidden;
+    user-select: none;
+
+    i {
+      padding-right: 1rem;
+      font-style: normal;
+    }
+
+    @include breakpoint(md) {
+      display: flex;
+    }
+  }
+
+  &__content {
+    min-width: 0;
+    flex: 1;
+    padding: 2rem;
+
+    @include breakpoint(md) {
+      padding: 2.4rem 3rem 3rem 7.8rem;
+    }
+  }
+}

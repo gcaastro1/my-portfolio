@@ -1,9 +1,6 @@
 @use 'abstracts' as *;
 
 .stack {
-  border-block: 1px solid var(--line);
-  background: color-mix(in srgb, var(--bg-elevated) 58%, transparent);
-
   &__grid {
     display: grid;
     gap: 1.4rem;
@@ -21,8 +18,8 @@
     min-height: 25rem;
     padding: 2.2rem;
     border: 1px solid var(--line);
-    border-radius: 1.6rem;
-    background: var(--surface);
+    border-radius: var(--radius);
+    background: var(--bg-elevated);
     transition: border-color 200ms ease, box-shadow 200ms ease;
 
     &:hover {
@@ -77,8 +74,8 @@
     color: var(--accent);
 
     span {
-      color: var(--text-muted);
-      font-family: 'Courier New', monospace;
+      color: var(--syn-string);
+      font-family: $mono-font-stack;
       font-size: 0.95rem;
     }
   }

@@ -1,40 +1,39 @@
+@use 'abstracts' as *;
+
 .heading {
   max-width: 78rem;
-  margin-bottom: 5rem;
+  margin-bottom: 4rem;
 
   &__eyebrow {
     display: flex;
     margin-bottom: 1.4rem;
     align-items: center;
-    gap: 1rem;
-    color: var(--accent);
-    font-family: 'Courier New', monospace;
-    font-size: 1.15rem;
-    font-weight: 700;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
+    gap: 0.8rem;
+    color: var(--text-muted);
+    font-family: $mono-font-stack;
+    font-size: 1.2rem;
+    font-weight: 500;
 
     &::before {
-      content: '';
-      width: 3.2rem;
-      height: 1px;
-      background: var(--accent);
+      content: '//';
+      color: var(--accent);
     }
   }
 
   &__title {
-    max-width: 18ch;
-    font-size: clamp(3.8rem, 8vw, 7.2rem);
-    font-weight: 780;
-    letter-spacing: -0.055em;
-    line-height: 0.98;
+    max-width: 20ch;
+    font-size: clamp(3.2rem, 6vw, 5.6rem);
+    font-weight: 600;
+    letter-spacing: -0.04em;
+    line-height: 1.05;
+    text-wrap: balance;
   }
 
   &__description {
     max-width: 64rem;
     margin-top: 2rem;
     color: var(--text-muted);
-    font-size: 1.55rem;
+    font-size: 1.6rem;
     line-height: 1.7;
   }
 }
@@ -45,10 +44,6 @@
 
   .heading__eyebrow {
     justify-content: flex-end;
-
-    &::before {
-      order: 2;
-    }
   }
 
   .heading__title,
