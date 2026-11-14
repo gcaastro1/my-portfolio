@@ -1,0 +1,127 @@
+@use 'abstracts' as *;
+
+.status {
+  position: fixed;
+  z-index: 100;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  height: var(--statusbar-h);
+  padding-inline: 1.2rem;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.2rem;
+  color: var(--text-muted);
+  border-top: 1px solid var(--line);
+  background: var(--bg);
+  font-family: $mono-font-stack;
+  font-size: 1.1rem;
+
+  &__dot {
+    flex: none;
+    width: 0.8rem;
+    height: 0.8rem;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 1rem var(--accent);
+  }
+
+  &__place {
+    display: flex;
+    flex: 1;
+    min-width: 0;
+    align-items: center;
+    justify-content: flex-start;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+
+    @include breakpoint(md) {
+      justify-content: center;
+    }
+  }
+
+  &__basedIn {
+    display: none;
+    white-space: pre;
+
+    @include breakpoint(sm) {
+      display: inline;
+    }
+  }
+
+  &__time {
+    display: none;
+
+    @include breakpoint(sm) {
+      display: inline;
+    }
+  }
+
+  &__actions {
+    display: flex;
+    flex: none;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  &__social {
+    display: none;
+    gap: 0.4rem;
+
+    @include breakpoint(md) {
+      display: flex;
+    }
+
+    a {
+      display: grid;
+      width: 2.6rem;
+      height: 2.6rem;
+      place-items: center;
+      border-radius: var(--radius);
+
+      &:hover {
+        color: var(--accent);
+      }
+    }
+  }
+
+  &__palette {
+    display: none;
+    padding: 0.3rem 0.7rem;
+    align-items: center;
+    gap: 0.4rem;
+    color: var(--text-muted);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: transparent;
+    font: inherit;
+
+    @include breakpoint(md) {
+      display: inline-flex;
+    }
+
+    &:hover {
+      color: var(--text);
+      border-color: var(--line-strong);
+    }
+  }
+
+  &__cta {
+    display: inline-flex;
+    padding: 0.5rem 1rem;
+    align-items: center;
+    gap: 0.6rem;
+    color: var(--on-accent);
+    border-radius: var(--radius);
+    background: var(--accent);
+    font-weight: 600;
+    white-space: nowrap;
+    transition: background-color 160ms ease;
+
+    &:hover {
+      background: var(--accent-strong);
+    }
+  }
+}
