@@ -6,6 +6,7 @@ import Header from '@/components/Header'
 import Projects from '@/components/Projects'
 import SideRail from '@/components/SideRail'
 import SkipLink from '@/components/SkipLink'
+import SmoothScroll from '@/components/SmoothScroll'
 import Stack from '@/components/Stack'
 import StatusBar from '@/components/StatusBar'
 import TitleBar from '@/components/TitleBar'
@@ -14,6 +15,7 @@ export default function Home() {
   return (
     <>
       <SkipLink />
+      <SmoothScroll />
       <CommandPalette />
       <TitleBar />
       <SideRail />
