@@ -13,7 +13,7 @@ export interface ProjectData {
   visible: boolean
 }
 
-// Mesmos projetos do perfil do LinkedIn (descrições condensadas para o card).
+// Os 4 projetos do perfil do LinkedIn (descrições condensadas para o card) e o próprio portfólio.
 const projectsData: ProjectData[] = [
   {
     id: 1,
@@ -25,6 +25,7 @@ const projectsData: ProjectData[] = [
     },
     stack: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS', 'Supabase'],
     deploy: 'https://disputa-vm-xldt.vercel.app',
+    image: '/projects/disputa-vm.png',
     status: 'live',
     visible: true,
   },
@@ -39,7 +40,7 @@ const projectsData: ProjectData[] = [
     stack: ['Angular 18', 'TypeScript', 'Tailwind CSS', 'Apollo GraphQL'],
     repository: 'https://github.com/gcaastro1/tempmail-gen',
     deploy: 'https://dropmailer-gen.vercel.app/',
-    image: '/dropmailer.png',
+    image: '/projects/dropmailer.png',
     status: 'live',
     visible: true,
   },
@@ -64,7 +65,24 @@ const projectsData: ProjectData[] = [
       pt: 'Projeto em que o usuário cria uma conta, compra cursos de tecnologia e assiste aos cursos comprados pelo perfil.',
     },
     stack: ['React', 'TypeScript', 'JSON Server'],
+    repository: 'https://github.com/gcaastro1/startemy-project',
+    image: '/projects/startemy.png',
     status: 'completed',
+    visible: true,
+  },
+  {
+    id: 5,
+    title: 'Portfolio Website',
+    label: { en: '2026', pt: '2026' },
+    description: {
+      en: 'Personal portfolio with an IDE-style layout, built with Next.js, TypeScript, Sass, Framer Motion and Three.js. It has light and dark themes, English and Portuguese, and a command menu (Ctrl+K).',
+      pt: 'Portfólio pessoal com layout inspirado em editor de código, feito com Next.js, TypeScript, Sass, Framer Motion e Three.js. Tem tema claro e escuro, inglês e português e menu de comandos (Ctrl+K).',
+    },
+    stack: ['Next.js', 'React', 'TypeScript', 'Sass', 'Framer Motion', 'Three.js'],
+    repository: 'https://github.com/gcaastro1/my-portfolio',
+    deploy: 'https://gustavolima.vercel.app',
+    image: '/projects/portfolio.png',
+    status: 'live',
     visible: true,
   },
 ]
