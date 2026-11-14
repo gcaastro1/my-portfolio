@@ -4,6 +4,9 @@ import React, { useEffect, useState, useContext, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ThemeContext } from '@/contexts/ThemeContext'
 import { LanguageContext } from '@/contexts/LanguageContext'
+import { OPEN_PALETTE_EVENT } from '@/utils/events'
+import { translations } from '@/utils/i18n'
+import { scrollToHash } from '@/utils/smoothScroll'
 import styles from './style.module.scss'
 
 const CommandPalette = () => {
@@ -13,10 +16,11 @@ const CommandPalette = () => {
   
   const { theme, setTheme } = useContext(ThemeContext)
   const { language, setLanguage } = useContext(LanguageContext)
+  const copy = translations[language].palette
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
         e.preventDefault()
         setIsOpen((prev) => !prev)
       }
@@ -24,9 +28,14 @@ const CommandPalette = () => {
         setIsOpen(false)
       }
     }
+    const handleOpen = () => setIsOpen(true)
 
     window.addEventListener('keydown', handleKeyDown)
-    return () => window.removeEventListener('keydown', handleKeyDown)
+    window.addEventListener(OPEN_PALETTE_EVENT, handleOpen)
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown)
+      window.removeEventListener(OPEN_PALETTE_EVENT, handleOpen)
+    }
   }, [])
 
   useEffect(() => {
@@ -37,45 +46,34 @@ const CommandPalette = () => {
     }
   }, [isOpen])
 
+  const goTo = (hash: string) => {
+    scrollToHash(hash)
+    setIsOpen(false)
+  }
+
   const commands = [
     {
       id: 'theme-dark',
-      label: 'Switch to Dark Theme',
-      action: () => { setTheme('dark'); setIsOpen(false) }
+      label: copy.themeDark,
+      action: () => { setTheme('dark'); setIsOpen(false) },
     },
     {
       id: 'theme-light',
-      label: 'Switch to Light Theme',
-      action: () => { setTheme('light'); setIsOpen(false) }
+      label: copy.themeLight,
+      action: () => { setTheme('light'); setIsOpen(false) },
     },
     {
       id: 'lang-en',
-      label: 'Switch Language to English',
-      action: () => { setLanguage('en'); setIsOpen(false) }
+      label: copy.langEn,
+      action: () => { setLanguage('en'); setIsOpen(false) },
     },
     {
       id: 'lang-pt',
-      label: 'Switch Language to Portuguese',
-      action: () => { setLanguage('pt'); setIsOpen(false) }
+      label: copy.langPt,
+      action: () => { setLanguage('pt'); setIsOpen(false) },
     },
-    {
-      id: 'nav-projects',
-      label: 'Go to Projects',
-      action: () => { 
-        document.querySelector('#projects')?.scrollIntoView({ behavior: 'smooth' })
-        window.history.pushState(null, '', '#projects')
-        setIsOpen(false)
-      }
-    },
-    {
-      id: 'nav-contact',
-      label: 'Go to Contact',
-      action: () => { 
-        document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' })
-        window.history.pushState(null, '', '#contact')
-        setIsOpen(false) 
-      }
-    }
+    { id: 'nav-projects', label: copy.goProjects, action: () => goTo('#projects') },
+    { id: 'nav-contact', label: copy.goContact, action: () => goTo('#contact') },
   ]
 
   const filteredCommands = commands.filter(cmd => 
@@ -94,8 +92,11 @@ const CommandPalette = () => {
     <AnimatePresence>
       {isOpen && (
         <div className={styles.overlay} onClick={() => setIsOpen(false)}>
-          <motion.div 
+          <motion.div
             className={styles.palette}
+            role="dialog"
+            aria-modal="true"
+            aria-label={copy.placeholder}
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.95 }}
@@ -106,11 +107,12 @@ const CommandPalette = () => {
               ref={inputRef}
               type="text" 
               className={styles.input}
-              placeholder="Type a command or search..." 
+              placeholder={copy.placeholder}
+              aria-label={copy.placeholder}
               value={search}
               onChange={(e) => setSearch(e.target.value)}
             />
-            <div className={styles.list}>
+            <div className={styles.list} data-lenis-prevent>
               {filteredCommands.length > 0 ? (
                 filteredCommands.map(cmd => (
                   <button 
@@ -122,7 +124,7 @@ const CommandPalette = () => {
                   </button>
                 ))
               ) : (
-                <div className={styles.empty}>No commands found.</div>
+                <div className={styles.empty}>{copy.empty}</div>
               )}
             </div>
           </motion.div>
