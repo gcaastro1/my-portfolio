@@ -1,10 +1,9 @@
 import type Lenis from 'lenis'
 import type { MouseEvent } from 'react'
 
-let instance: Lenis | null = null
+import { anchorScrollTop } from './anchorScroll'
 
-// Mantenha em sincronia com --titlebar-h (4.4rem = 44px com root 62.5%).
-const TITLEBAR_OFFSET = 44
+let instance: Lenis | null = null
 
 export const setSmoothScroll = (lenis: Lenis | null) => {
   instance = lenis
@@ -14,10 +13,19 @@ export function scrollToHash(hash: string): void {
   const target = document.querySelector<HTMLElement>(hash)
   if (!target) return
 
+  const top =
+    hash === '#home'
+      ? 0
+      : anchorScrollTop(
+          target.getBoundingClientRect().top,
+          window.scrollY,
+          parseFloat(getComputedStyle(target).paddingTop) || 0,
+        )
+
   if (instance) {
-    instance.scrollTo(target, { offset: -TITLEBAR_OFFSET })
+    instance.scrollTo(top)
   } else {
-    target.scrollIntoView({ behavior: 'smooth' })
+    window.scrollTo({ top, behavior: 'smooth' })
   }
   window.history.pushState(null, '', hash)
 }
